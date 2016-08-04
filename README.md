@@ -13,7 +13,7 @@
 - Calendar: Display what events are planned.
 - Login System.
 - Admins can post articles (news, stories and events).
-..* Events: Facebook event information and work groups for each event (Admin, décor, PR, etc – Ability to make mass announcements to each work group and assign members to a specific work group).
+	..* Events: Facebook event information and work groups for each event (Admin, décor, PR, etc – Ability to make mass announcements to each work group and assign members to a specific work group).
 - Store official documents (files, music).
 
 ### Mobile Application:
@@ -26,14 +26,31 @@
 Proudly South African colours with a simple, elegant and professional design.
 
 ### Basic Layout:
+Large Screen:
 ![Lage Screen](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/LargeScreen.jpg)
+
+Small Screen:
 ![Small Screen](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/SmallScreen.jpg)
+
+Menu:
 ![Menu](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/Menu.jpg)
+
+Login:
 ![Login](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/Login.jpg)
+
+Sign Up:
 ![Sign Up](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/Signup.jpg)
+
+Events:
 ![Events](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/Events.jpg)
+
+Story:
 ![Story](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/Story.jpg)
+
+Story Layout:
 ![Story Layout](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/StoryLayout.jpg)
+
+News:
 ![News](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/News.jpg)
 
 ### Technologies:
