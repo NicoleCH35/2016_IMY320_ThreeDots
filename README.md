@@ -23,7 +23,7 @@
 - Announcement function to everyone who has the application.
 
 ### Colour Scheme and Design:
-Proudly South African colours with a simple, elegant and professional design.
+Proudly South African colours as accent colours with a simple, elegant and professional design.
 
 ### Basic Layout:
 Large Screen:
@@ -69,6 +69,10 @@ Mobile Screen:
 Mobile Story Layout:
 
 ![Mobile Story Layout](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/MobileStoryLayout.jpg)
+
+Calendar:
+
+![Calendar](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/Calendar.jpg)
 
 ### Technologies:
 Login and Sign Up system:
