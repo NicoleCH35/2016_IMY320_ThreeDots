@@ -62,6 +62,14 @@ News:
 
 ![News](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/News.jpg)
 
+Mobile Screen:
+
+![Mobile Screen](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/MobileScreen.jpg)
+
+Mobile Story Layout:
+
+![Mobile Story Layout](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/MobileStoryLayout.jpg)
+
 ### Technologies:
 Login and Sign Up system:
 - PHP and SQL.
