@@ -97,7 +97,7 @@
 					<ul>
 						<li class="search">
 							<a class="fa-search" href="#search">Search</a>
-							<form id="search" method="get" action="#">
+							<form id="search" method="get" action="search.php">
 								<input type="text" name="query" placeholder="Search"/>
 							</form>
 						</li>
@@ -113,7 +113,7 @@
 
 				<!-- Search -->
 				<section>
-					<form class="search" method="get" action="#">
+					<form class="search" method="get" action="search.php">
 						<input type="text" name="query" placeholder="Search"/>
 					</form>
 				</section>
@@ -235,7 +235,7 @@
 		<script src="../assets/js/skel.min.js"></script>
 		<script src="../assets/js/util.js"></script>
 		<script src="../assets/js/signup.js"></script>
-		<script src="assets/js/login.js"></script>
+		<script src="../assets/js/login.js"></script>
 		<!--[if lte IE 8]>
 		<script src="../assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="../assets/js/main.js"></script>
