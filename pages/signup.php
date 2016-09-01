@@ -1,7 +1,9 @@
 <?php
-
-	session_start();
-
+	if(session_status()==PHP_SESSION_NONE)
+	{
+		session_start();
+	}
+	
 	$failed1 = false;
 	$failed2 = false;
 	$message = "The Email Address you entered is in use. Please use another Email Address.";
@@ -38,7 +40,7 @@
 			} else
 			{
 				session_start();
-				$sql = "INSERT INTO members(username ,email, password,image) VALUES ('$user','$email ',' $pass','images/profiles/unknown.png')";
+				$sql = "INSERT INTO members(username ,email, password,image) VALUES ('$user','$email ','$pass','images/profiles/unknown.png')";
 
 				$result = mysqli_query($conn, $sql);
 
@@ -54,6 +56,7 @@
 
 				$_SESSION['userId'] = $id_v;
 				$_SESSION['sessionId'] = session_id();
+
 				header('Location: ../index.php');
 			}
 		}

@@ -1,34 +1,51 @@
 <?php
-
-	session_start();
+	if(session_status()==PHP_SESSION_NONE)
+	{
+		session_start();
+	}
 
 	$failed = false;
 	if(isset($_POST["submit"]) || isset($_POST["hidden"]))
 	{
+		//echo"working";
 		loginUser();
 	}
 
 	function loginUser()
 	{
+		//echo "in";
 		include 'dbconfig.php';
 
 		$user = $_POST['username'];
 		$pass = $_POST['password'];
+
+
 
 		$sql = "SELECT * FROM members WHERE username='$user' AND password ='$pass'";
 		$result = mysqli_query($conn, $sql);
 
 		if(mysqli_num_rows($result) > 0)
 		{
+			echo"in";
 			session_start();
 			while($row = $result->fetch_assoc())
 			{
 				$id_v = $row["id"];
+				$admin = $row["admin"];
 			}
 
 			$_SESSION['userId'] = $id_v;
 			$_SESSION['sessionId'] = session_id();
-			header('Location: ../index.php');
+
+			if($admin)
+			{
+				header('Location: admin.php');
+			}
+			else
+			{
+				header('Location: ../index.php');
+			}
+
 		} else
 		{
 			$failed = true;
@@ -145,10 +162,10 @@
 
 			<div id="main">
 
-				<form method="post" action="login.php" onsubmit="return validateLogin()">
+				<form method="post" action="login.php" onsubmit="return validateLogin2()">
 					<h1>Log in</h1>
 					<label for="username">Username: </label>
-					<input type="text" name="username" id="username" class="Linput"
+					<input type="text" name="username" id="username" class="Linput2"
 						<?php
 							if(isset($_POST["submit"]))
 							{
@@ -161,7 +178,7 @@
 					/><br/>
 
 					<label for="password">Password: </label>
-					<input type="password" name="password" id="password" class="Linput"/><br/>
+					<input type="password" name="password" id="password" class="Linput2"/><br/>
 
 					<?php
 						if(isset($_POST["submit"]))

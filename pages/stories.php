@@ -1,6 +1,8 @@
 <?php
-
-	session_start();
+	if(session_status()==PHP_SESSION_NONE)
+	{
+		session_start();
+	}
 	include 'dbconfig.php';
 
 ?>
@@ -33,7 +35,29 @@
 						<li><a href="events.php">Events</a></li>
 						<li><a href="stories.php">Stories</a></li>
 						<li><a href="news.php">News</a></li>
-						<li><a href="signup.php">Become a Member</a></li>
+						<?php
+							if(isset($_SESSION['sessionId']))
+							{
+								$uid=$_SESSION['userId'];
+								$sql = "SELECT admin FROM members WHERE id='$uid'";
+								$result = mysqli_query($conn, $sql);
+								while($row = $result->fetch_assoc())
+								{
+									$admin = $row["admin"];
+								}
+								if($admin)
+								{
+									echo'<li><a href="admin.php">Admin</a></li>';
+
+								}
+								echo'<li><a href="logout.php">Logout</a></li>';
+							}
+							else
+							{
+								echo'<li><a href="signup.php">Become a Member</a></li>';
+							}
+
+						?>
 					</ul>
 				</nav>
 				<nav class="main">
@@ -88,28 +112,59 @@
 								<p>Find out what's happening in the world around you</p>
 							</a>
 						</li>
-						<li>
-							<a href="signup.php">
-								<h3>Become a member</h3>
-								<p>Join us today in helping the people who need it most</p>
-							</a>
-						</li>
+						<?php
+							if(isset($_SESSION['sessionId']))
+							{
+								$uid=$_SESSION['userId'];
+								$sql = "SELECT admin FROM members WHERE id='$uid'";
+								$result = mysqli_query($conn, $sql);
+								while($row = $result->fetch_assoc())
+								{
+									$admin = $row["admin"];
+								}
+								if($admin)
+								{
+									echo'<li><a href="admin.php"><h3>Admin</h3><p>Manage Site</p></a></li>';
+								}
+
+							}
+							else
+							{
+								echo'<li><a href="signup.php"><h3>Become a member</h3><p>Join us today in helping the people who need it most</p></a></li>';
+							}
+
+						?>
 					</ul>
 				</section>
 
 				<!-- Actions -->
+
+
 				<section>
-					<form method="post" action="login.php" onsubmit="return validateLogin()">
-						<h1>Log in</h1>
-						<label for="username">Username: </label>
-						<input type="text" name="username" id="username" class="Linput"/><br/>
+					<?php
+						if(isset($_SESSION['sessionId']))
+						{
+							echo'<ul class="actions vertical">
+									<li><a href="logout.php" class="button big fit">Logout</a></li>
+								</ul>';
+						}
+						else
+						{
+							echo'<form method="post" action="login.php" onsubmit="return validateLogin()">
+									<h1>Log in</h1>
+									<label for="username">Username: </label>
+									<input type="text" name="username" id="username" class="Linput"/><br/>
+			
+									<label for="password">Password: </label>
+									<input type="password" name="password" id="password" class="Linput"/><br/>
+			
+									<input type="submit" name="submit" value="Log in">
+									<input type="hidden" name="hidden">
+								</form>';
+						}
 
-						<label for="password">Password: </label>
-						<input type="password" name="password" id="password" class="Linput"/><br/>
+					?>
 
-						<input type="submit" name="submit" value="Log in">
-						<input type="hidden" name="hidden">
-					</form>
 				</section>
 
 			</section>
