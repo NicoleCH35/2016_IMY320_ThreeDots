@@ -1,0 +1,29 @@
+.fixedSize{
+	width : 1000px;
+}
+
+.centerAlign{
+	text-align : center;
+}
+
+/**************************INPUT**************************/
+.textIn{
+	width : 100%;
+}
+
+.textInCent{
+	width : 150%;
+	margin-left : -70px;
+}
+
+.centerAlign{
+	margin : auto;
+}
+
+.centerAlignEdit{
+	margin : 70px;
+}
+
+.formSize{
+	width : 50%;
+}

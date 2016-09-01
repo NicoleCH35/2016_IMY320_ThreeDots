@@ -39,6 +39,8 @@
 						<li><a href="pages/stories.php">Stories</a></li>
 						<li><a href="pages/news.php">News</a></li>
 						<li><a href="pages/signup.php">Become a Member</a></li>
+								<!-- If user is an admin display this -->
+								<li><a href="pages/admin.php">Admin</a></li>
 					</ul>
 				</nav>
 				<nav class="main">
