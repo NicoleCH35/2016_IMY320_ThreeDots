@@ -1,30 +1,59 @@
 <?php
 
 	session_start();
-	include 'dbconfig.php';
+
+	$failed = false;
+	if(isset($_POST["submit"]) || isset($_POST["hidden"]))
+	{
+		loginUser();
+	}
+
+	function loginUser()
+	{
+		include 'dbconfig.php';
+
+		$user = $_POST['username'];
+		$pass = $_POST['password'];
+
+		$sql = "SELECT * FROM members WHERE username='$user' AND password ='$pass'";
+		$result = mysqli_query($conn, $sql);
+
+		if(mysqli_num_rows($result) > 0)
+		{
+			session_start();
+			while($row = $result->fetch_assoc())
+			{
+				$id_v = $row["id"];
+			}
+
+			$_SESSION['userId'] = $id_v;
+			$_SESSION['sessionId'] = session_id();
+			header('Location: ../index.php');
+		} else
+		{
+			$failed = true;
+		}
+	}
 
 ?>
 
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>South African NPO</title>
+		<title>South African NPO - Login</title>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<!--[if lte IE 8]>
-		<script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="../assets/css/main.css"/>
 		<!--[if lte IE 9]>
-		<link rel="stylesheet" href="assets/css/ie9.css"/><![endif]-->
+		<link rel="stylesheet" href="../assets/css/ie9.css"/><![endif]-->
 		<!--[if lte IE 8]>
-		<link rel="stylesheet" href="assets/css/ie8.css"/><![endif]-->
+		<link rel="stylesheet" href="../assets/css/ie8.css"/><![endif]-->
 	</head>
 	<body>
-
-		<!-- Wrapper -->
 		<div id="wrapper">
 
-			<!-- Header -->
 			<header id="header">
 				<h1><a href="../index.php">South African NPO</a></h1>
 				<nav class="links">
@@ -111,72 +140,55 @@
 						<input type="hidden" name="hidden">
 					</form>
 				</section>
+
 			</section>
 
-			<!-- Main -->
 			<div id="main">
 
-				<!-- Post -->
+				<form method="post" action="login.php" onsubmit="return validateLogin()">
+					<h1>Log in</h1>
+					<label for="username">Username: </label>
+					<input type="text" name="username" id="username" class="Linput"
+						<?php
+							if(isset($_POST["submit"]))
+							{
+								if(!$failed)
+								{
+									echo "value='" . $_POST['username'] . "'";
+								}
+							}
+						?>
+					/><br/>
 
-				<?php
+					<label for="password">Password: </label>
+					<input type="password" name="password" id="password" class="Linput"/><br/>
 
-					$sql = "SELECT * FROM news ORDER BY id DESC"; //finds stories
-					$test = $conn->query($sql);
-
-					while($row = $test->fetch_assoc())
-					{
-						$newsID = $row['id'];
-						$title = $row['title'];
-						$news = $row['news'];
-						$date = $row['date'];
-						$link = $row['link'];
-						$image = $row['image'];
-						$postedBy = $row['postedBy'];
-
-						$sql = "SELECT * FROM members WHERE id = '" . $postedBy . "'"; //finding the user
-						$test2 = $conn->query($sql);
-						while($row2 = $test2->fetch_assoc())
+					<?php
+						if(isset($_POST["submit"]))
 						{
-							$userImage = $row2['image'];
+							if(!$failed)
+							{
+								echo "<h4>The Username and Password you entered do not match</h4>";
+							}
 						}
+					?>
+					<input type="submit" name="submit" value="Log in">
+				</form>
 
-						echo '<article class="post">';
-						echo '<header>';
-						echo '<div class="title">';
-						echo '<h2><a href="#">' . $title . '</a></h2>';
-						echo '</div>';
+				<a href="signup.php" class="button big fit">Not a member yet - Register</a>
 
-						echo '<div class="meta">';
-						if($link != "")
-						{
-							echo '<p>Read more <a href="' . $link . '">here</a></p>';
-						}
-						echo '<a href="#" class="image"><img src="../' . $image . '" alt="" /></a>';
-						echo '<time class="published" datetime="' . $date . '">' . $date . '</time>';
-						echo '</div>';
-						echo '</header>';
-
-						echo '<p>' . $news . '</p>';
-
-						echo '</article>';
-					}
-				?>
-
-				<!-- Pagination -->
-				<ul class="actions pagination">
-					<li><a href="" class="disabled button big previous">Previous Page</a></li>
-					<li><a href="#" class="button big next">Next Page</a></li>
-				</ul>
 
 			</div>
+		</div>
 
-			<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/skel.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="assets/js/login.js"></script>
-			<!--[if lte IE 8]>
-			<script src="../assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="../assets/js/main.js"></script>
+
+		<!-- Scripts -->
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/skel.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/login.js"></script>
+		<!--[if lte IE 8]>
+		<script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="../assets/js/main.js"></script>
 	</body>
 </html>
