@@ -1,10 +1,12 @@
 <?php
-	if(session_status()==PHP_SESSION_NONE)
-	{
-		session_start();
-	}
+	//~ if(session_status()==PHP_SESSION_NONE)
+	//~ {
+		//~ session_start();
+	//~ }
 	//include 'redirect.php';
 	include 'dbconfig.php';
+	include 'redirect.php';
+	include 'redirectAdmin.php';
 
 ?>
 
@@ -31,7 +33,7 @@
 						<h1><a href="../index.php">South African NPO</a></h1>
 						<nav class="links">
 							<ul>
-								<li><a href="#">About us</a></li>
+								<li><a href="about.php">About us</a></li>
 								<li><a href="events.php">Events</a></li>
 								<li><a href="stories.php">Stories</a></li>
 								<li><a href="news.php">News</a></li>
@@ -89,25 +91,25 @@
 							<section>
 								<ul class="links">
 									<li>
-										<a href="#">
+										<a href="about.php">
 											<h3>About us</h3>
 											<p>Find out what we do and how you can contact us</p>
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="events.php">
 											<h3>Events</h3>
 											<p>Check out our calender to find out what events we have planned for this month</p>
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="stories.php">
 											<h3>Stories</h3>
 											<p>See what we have done to make a difference in the lives of those who need it</p>
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="news.php">
 											<h3>News</h3>
 											<p>Find out what's happening in the world around you</p>
 										</a>
@@ -207,11 +209,11 @@
 												<label for="image_story">Image:</label>
 												<input type="file" class="form-control" id="image_story" name="image_story">
 												</br>
-												<div class="thumbnail">
+												<!--<div class="thumbnail">
 													<div class="image">
 														<img id="prevImagePost_story" class="prevImageSmall"/>
 													</div>
-												</div>
+												</div>-->
 											</div>
 											<span id="errorMsg_story"></span><br/><br/>
 											<button type="submit" class="btn btn-default" id="submit_story" name="submit_story">Create!</button>
@@ -258,11 +260,11 @@
 												<label for="image_event">Event Image:</label>
 												<input type="file" class="form-control" id="image_event" name="image_event">
 												</br>
-												<div class="thumbnail">
+												<!--<div class="thumbnail">
 													<div class="image">
 														<img id="prevImagePost_event" class="prevImageSmall"/>
 													</div>
-												</div>
+												</div>-->
 											</div>
 											<span id="errorMsg_event"></span><br/><br/>
 											<button type="submit" class="btn btn-default" id="submit_event" name="submit_event">Create!</button>
@@ -293,11 +295,11 @@
 												<label for="image_news">News Image:</label>
 												<input type="file" class="form-control" id="image_news" name="image_news">
 												</br>
-												<div class="thumbnail">
+												<!--<div class="thumbnail">
 													<div class="image">
 														<img id="prevImagePost_news" class="prevImageSmall"/>
 													</div>
-												</div>
+												</div>-->
 											</div>
 											<span id="errorMsg_news"></span><br/><br/>
 											<button type="submit" class="btn btn-default" id="submit_news" name="submit_news">Create!</button>

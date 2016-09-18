@@ -3,6 +3,8 @@
 	{
 		session_start();
 	}
+	
+	include 'redirectLS.php';
 
 	$failed = false;
 	if(isset($_POST["submit"]) || isset($_POST["hidden"]))

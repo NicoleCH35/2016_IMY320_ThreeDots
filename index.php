@@ -30,10 +30,11 @@
 
 			<!-- Header -->
 			<header id="header">
-				<h1><a href="index.php">South African NPO</a></h1>
+				<h1><a href="index.php">Fireflies</a></h1>
+				
 				<nav class="links">
 					<ul>
-						<li><a href="#">About us</a></li>
+						<li><a href="pages/about.php">About us</a></li>
 						<li><a href="pages/events.php">Events</a></li>
 						<li><a href="pages/stories.php">Stories</a></li>
 						<li><a href="pages/news.php">News</a></li>
@@ -91,7 +92,7 @@
 				<section>
 					<ul class="links">
 						<li>
-							<a href="#">
+							<a href="pages/about.php">
 								<h3>About us</h3>
 								<p>Find out what we do and how you can contact us</p>
 							</a>
@@ -212,25 +213,19 @@
 						echo '<a href="#" class="author"><span class="name">' . $user . '</span><img src="' . $profile . '" alt="" /></a>';
 						echo '</div>';
 						echo '</header>';
-						echo '<a href="#" class="image featured"><img src="' . $image . '" alt="" /></a>';
+						echo '<span class="image featured"><img src="' . $image . '" alt="' . $desc . '" /></span>';
 						echo '<p>' . $story . '</p>';
 
 						echo '<footer>';
 						echo '<ul class="stats">';
 						echo '<li><a href="#">General</a></li>';
-						echo '<li><a href="pages/like.php" class="icon fa-heart" id="likes" onclick="addLike('.$postID.')">' . $numLikes . '</a></li>';
-						echo '<li><a href="#" class="icon fa-comment">128</a></li>';
+						echo '<li><a href="#" class="icon fa-heart likes" data-id="'.$postID.'">' . $numLikes . '</a></li>';
+						echo '<li><a href="pages/stories.php" class="icon fa-comment">128</a></li>';
 						echo '</ul>';
 						echo '</footer>';
 						echo '</article>';
 					}
 				?>
-
-				<!-- Pagination -->
-				<ul class="actions pagination">
-					<li><a href="" class="disabled button big previous">Previous Page</a></li>
-					<li><a href="#" class="button big next">Next Page</a></li>
-				</ul>
 
 			</div>
 
@@ -239,9 +234,10 @@
 
 				<!-- Intro -->
 				<section id="intro">
-					<a href="#" class="logo"><img src="images/sa_flag.gif" alt=""/></a>
+					<a href="index.php" class="logo"><img src="images/sa_flag.gif" alt=""/></a>
 					<header>
-						<h2>South African NPO</h2>
+						<h1>Fireflies</h1>
+						<h3>South African NPO</h3>
 					</header>
 				</section>
 
@@ -270,15 +266,16 @@
 								while($row2 = $test2->fetch_assoc())
 								{
 									$userImage = $row2['image'];
+									$userName = $row2['username'];
 								}
 
 								echo '<article class="mini-post">';
 								echo '<header>';
 								echo '<h3><a href="#">' . $eventName . '</a></h3>';
 								echo '<div class="published"><time  datetime="' . $startDate . '">' . $startDate . '</time> - <time  datetime="' . $endDate . '">' . $endDate . '</time></div>';
-								echo '<a href="#" class="author"><img src="' . $userImage . '" alt="" /></a>';
+								echo '<a href="#" class="author"><img src="' . $userImage . '" alt="' . $userName . '" /></a>';
 								echo '</header>';
-								echo '<a href="#" class="image"><img src="' . $image . '" alt="" /></a>';
+								echo '<a href="#" class="image"><img src="' . $image . '" alt="' . $desc . '" /></a>';
 								echo '</article>';
 							}
 						?>
@@ -318,7 +315,7 @@
 								echo '<h3><a href="#">' . $title . '</a></h3>';
 								echo '<time class="published" datetime="' . $date . '">' . $date . '</time>';
 								echo '</header>';
-								echo '<a href="#" class="image"><img src="' . $image . '" alt="" /></a>';
+								echo '<a href="#" class="image"><img src="' . $image . '" alt="' . $news . '" /></a>';
 								echo '</article>';
 								echo '</li>';
 							}
@@ -330,24 +327,21 @@
 				<!-- About -->
 				<section class="blurb">
 					<h2>About</h2>
-					<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem
-						euismod amet placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed
-						ultricies.</p>
+					<p>We are a South African non-profit organisation that aims to fund raise for schools in need.</p>
 					<ul class="actions">
-						<li><a href="#" class="button">Learn More</a></li>
+						<li><a href="pages/about.php" class="button">Learn More</a></li>
 					</ul>
 				</section>
 
 				<!-- Footer -->
 				<section id="footer">
 					<ul class="icons">
-						<li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
-						<li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+						<li><a href="http://www.twitter.com" class="fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="http://www.facebook.com" class="fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="http://www.instagram.com" class="fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="pages/about.php" class="fa-envelope"><span class="label">Contact Us</span></a></li>
 					</ul>
-					<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a
+					<p class="copyright">&copy; ThreeDots. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a
 							href="http://unsplash.com">Unsplash</a>.</p>
 				</section>
 
@@ -364,6 +358,7 @@
 		<!--[if lte IE 8]>
 		<script src="assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="assets/js/main.js"></script>
+			<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
 
 	</body>
 </html>

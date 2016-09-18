@@ -1,12 +1,3 @@
-<?php
-	if(session_status()==PHP_SESSION_NONE)
-	{
-		session_start();
-	}
-	include 'dbconfig.php';
-
-?>
-
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -14,24 +5,24 @@
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<!--[if lte IE 8]>
-		<script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="../assets/css/main.css"/>
 		<!--[if lte IE 9]>
-		<link rel="stylesheet" href="../assets/css/ie9.css"/><![endif]-->
+		<link rel="stylesheet" href="assets/css/ie9.css"/><![endif]-->
 		<!--[if lte IE 8]>
-		<link rel="stylesheet" href="../assets/css/ie8.css"/><![endif]-->
+		<link rel="stylesheet" href="assets/css/ie8.css"/><![endif]-->
 	</head>
 	<body>
-
+		
 		<!-- Wrapper -->
 		<div id="wrapper">
 
 			<!-- Header -->
 			<header id="header">
-				<h1><a href="../index.php">South African NPO</a></h1>
+				<h1><a href="index.php">Fireflies</a></h1>
 				<nav class="links">
 					<ul>
-						<li><a href="#">About us</a></li>
+						<li><a href="about.php">About us</a></li>
 						<li><a href="events.php">Events</a></li>
 						<li><a href="stories.php">Stories</a></li>
 						<li><a href="news.php">News</a></li>
@@ -89,7 +80,7 @@
 				<section>
 					<ul class="links">
 						<li>
-							<a href="#">
+							<a href="about.php">
 								<h3>About us</h3>
 								<p>Find out what we do and how you can contact us</p>
 							</a>
@@ -171,52 +162,19 @@
 
 			<!-- Main -->
 			<div id="main">
-
-				<!-- Post -->
-				<!--Display this information in a modal when a user clicks on an event on the calendar -->
-				<?php
-
-					$sql = "SELECT * FROM events ORDER BY id DESC"; //finds stories
-					$test = $conn->query($sql);
-
-					while($row = $test->fetch_assoc())
-					{
-						$eventID = $row['id'];
-						$eventName = $row['eventName'];
-						$location = $row['location'];
-						$desc = $row['description'];
-						$startDate = $row['startDateTime'];
-						$endDate = $row['endDateTime'];
-						$image = $row['photo'];
-						$postedBy = $row['postedBy'];
-
-						$sql = "SELECT * FROM members WHERE id = '" . $postedBy . "'"; //finding the user
-						$test2 = $conn->query($sql);
-						while($row2 = $test2->fetch_assoc())
-						{
-							$userImage = $row2['image'];
-						}
-
-						echo '<article class="mini-post">';
-						echo '<header>';
-						echo '<h3><a href="#">' . $eventName . '</a></h3>';
-						echo '<div class="published"><time  datetime="' . $startDate . '">' . $startDate . '</time> - <time  datetime="' . $endDate . '">' . $endDate . '</time></div>';
-						echo '<a href="#" class="author"><img src="' . $userImage . '" alt="" /></a>';
-						echo '</header>';
-						echo '<a href="#" class="image"><img src="' . $image . '" alt="" /></a>';
-						echo '</article>';
-					}
-				?>
-
+				
 			</div>
 
-			<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/skel.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/login.js"></script>
-			<!--[if lte IE 8]>
-			<script src="../assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="../assets/js/main.js"></script>
+
+		
+		<!-- Scripts -->
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/skel.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/login.js"></script>
+		<!--[if lte IE 8]>
+		<script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="../assets/js/main.js"></script>
+
 	</body>
 </html>

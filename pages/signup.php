@@ -4,6 +4,8 @@
 		session_start();
 	}
 	
+	include 'redirectLS.php';
+	
 	$failed1 = false;
 	$failed2 = false;
 	$message = "The Email Address you entered is in use. Please use another Email Address.";
