@@ -19,7 +19,7 @@
 
 			<!-- Header -->
 			<header id="header">
-				<h1><a href="index.php">Fireflies</a></h1>
+				<h1><a href="../index.php">Fireflies</a></h1>
 				<nav class="links">
 					<ul>
 						<li><a href="about.php">About us</a></li>

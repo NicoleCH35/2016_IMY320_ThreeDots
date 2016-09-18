@@ -28,10 +28,10 @@
 
 			<!-- Header -->
 			<header id="header">
-				<h1><a href="../index.php">South African NPO</a></h1>
+				<h1><a href="../index.php">Fireflies</a></h1>
 				<nav class="links">
 					<ul>
-						<li><a href="#">About us</a></li>
+						<li><a href="about.php">About us</a></li>
 						<li><a href="events.php">Events</a></li>
 						<li><a href="stories.php">Stories</a></li>
 						<li><a href="news.php">News</a></li>
@@ -89,7 +89,7 @@
 				<section>
 					<ul class="links">
 						<li>
-							<a href="#">
+							<a href="about.php">
 								<h3>About us</h3>
 								<p>Find out what we do and how you can contact us</p>
 							</a>
@@ -200,7 +200,7 @@
 						echo '<article class="post">';
 						echo '<header>';
 						echo '<div class="title">';
-						echo '<h2><a href="#">' . $title . '</a></h2>';
+						echo '<h2>' . $title . '</h2>';
 						echo '<p>' . $desc . '</p>';
 						echo '</div>';
 						echo '<div class="meta">';
@@ -208,7 +208,7 @@
 						echo '<a href="#" class="author"><span class="name">' . $user . '</span><img src="images/avatar.jpg" alt="" /></a>';
 						echo '</div>';
 						echo '</header>';
-						echo '<a href="#" class="image featured"><img src="../' . $image . '" alt="" /></a>';
+						echo '<span><img src="../' . $image . '" alt="" width="252" height="102"/></span>';
 						echo '<p>' . $story . '</p>';
 
 						$sql = "SELECT * FROM comments WHERE storyID = '" . $postID . "'"; //finds stories
@@ -243,11 +243,6 @@
 					}
 				?>
 
-				<!-- Pagination -->
-				<ul class="actions pagination">
-					<li><a href="" class="disabled button big previous">Previous Page</a></li>
-					<li><a href="#" class="button big next">Next Page</a></li>
-				</ul>
 
 			</div>
 

@@ -16,6 +16,8 @@
 		<!--[if lte IE 8]>
 		<script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="../assets/css/main.css"/>
+		<link rel="stylesheet" href="calenderStyle.css"/>
+		<link rel="stylesheet" href="cal_modal_style.css" />
 		<!--[if lte IE 9]>
 		<link rel="stylesheet" href="../assets/css/ie9.css"/><![endif]-->
 		<!--[if lte IE 8]>
@@ -28,10 +30,10 @@
 
 			<!-- Header -->
 			<header id="header">
-				<h1><a href="../index.php">South African NPO</a></h1>
+				<h1><a href="../index.php">Fireflies</a></h1>
 				<nav class="links">
 					<ul>
-						<li><a href="#">About us</a></li>
+						<li><a href="about.php">About us</a></li>
 						<li><a href="events.php">Events</a></li>
 						<li><a href="stories.php">Stories</a></li>
 						<li><a href="news.php">News</a></li>
@@ -89,7 +91,7 @@
 				<section>
 					<ul class="links">
 						<li>
-							<a href="#">
+							<a href="about.php">
 								<h3>About us</h3>
 								<p>Find out what we do and how you can contact us</p>
 							</a>
@@ -171,41 +173,67 @@
 
 			<!-- Main -->
 			<div id="main">
-
+				<form id="cal_form" name="cal_form" method="POST" action="calender.php">
+					Please select a month: <input id="cal_month" list="month">
+						<datalist id="month">
+							<option value="January"/>
+							<option value="February"/>
+							<option value="March"/>
+							<option value="April"/>
+							<option value="May"/>
+							<option value="June"/>
+							<option value="July"/>
+							<option value="August"/>
+							<option value="September"/>
+							<option value="October"/>
+							<option value="November"/>
+							<option value="December"/>
+						</datalist>
+					<input type="submit" name="cal_submit" id="cal_submit" value="View"/>
+				</form>
+				
+				<div id="calender_spot">
+				</div>
+				
+				<div id="calender_modal" class="modal">
+				</div>
+				
 				<!-- Post -->
 				<!--Display this information in a modal when a user clicks on an event on the calendar -->
 				<?php
 
-					$sql = "SELECT * FROM events ORDER BY id DESC"; //finds stories
-					$test = $conn->query($sql);
+					//~ $sql = "SELECT * FROM events ORDER BY id DESC"; //finds stories
+					//~ $test = $conn->query($sql);
+					
+					//~ while($row = $test->fetch_assoc())
+					//~ {
+						//~ $eventID = $row['id'];
+						//~ $eventName = $row['eventName'];
+						//~ $location = $row['location'];
+						//~ $desc = $row['description'];
+						//~ $startDate = $row['startDateTime'];
+						//~ $endDate = $row['endDateTime'];
+						//~ $image = $row['photo'];
+						//~ $postedBy = $row['postedBy'];
 
-					while($row = $test->fetch_assoc())
-					{
-						$eventID = $row['id'];
-						$eventName = $row['eventName'];
-						$location = $row['location'];
-						$desc = $row['description'];
-						$startDate = $row['startDateTime'];
-						$endDate = $row['endDateTime'];
-						$image = $row['photo'];
-						$postedBy = $row['postedBy'];
+						//~ $sql = "SELECT * FROM members WHERE id = '" . $postedBy . "'"; //finding the user
+						//~ $test2 = $conn->query($sql);
+						//~ while($row2 = $test2->fetch_assoc())
+						//~ {
+							//~ $user = $row2['username'];
+							//~ $userImage = $row2['image'];
+						//~ }
 
-						$sql = "SELECT * FROM members WHERE id = '" . $postedBy . "'"; //finding the user
-						$test2 = $conn->query($sql);
-						while($row2 = $test2->fetch_assoc())
-						{
-							$userImage = $row2['image'];
-						}
-
-						echo '<article class="mini-post">';
-						echo '<header>';
-						echo '<h3><a href="#">' . $eventName . '</a></h3>';
-						echo '<div class="published"><time  datetime="' . $startDate . '">' . $startDate . '</time> - <time  datetime="' . $endDate . '">' . $endDate . '</time></div>';
-						echo '<a href="#" class="author"><img src="' . $userImage . '" alt="" /></a>';
-						echo '</header>';
-						echo '<a href="#" class="image"><img src="' . $image . '" alt="" /></a>';
-						echo '</article>';
-					}
+						//~ echo '<article class="mini-post">';
+						//~ echo '<header>';
+						//~ echo '<h3><a href="#">' . $eventName . '</a></h3>';
+						//~ echo '<div class="published"><time  datetime="' . $startDate . '">' . $startDate . '</time> - <time  datetime="' . $endDate . '">' . $endDate . '</time></div>';
+						//~ echo '<a href="#" class="author"><img src="' . $userImage . '" alt="" /></a>';
+						//~ echo '<p>' . $desc . '</p>';
+						//~ echo '</header>';
+						//~ echo '<img src="../images/Events/' . $image . '" alt="" width="351" height="176" />';
+						//~ echo '</article>';
+					//~ }
 				?>
 
 			</div>
@@ -218,5 +246,7 @@
 			<!--[if lte IE 8]>
 			<script src="../assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="../assets/js/main.js"></script>
+			<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
+			<script src="js_calender.js"></script>
 	</body>
 </html>

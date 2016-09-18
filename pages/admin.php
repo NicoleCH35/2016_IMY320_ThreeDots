@@ -30,7 +30,7 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1><a href="../index.php">South African NPO</a></h1>
+						<h1><a href="../index.php">Fireflies</a></h1>
 						<nav class="links">
 							<ul>
 								<li><a href="about.php">About us</a></li>
@@ -309,17 +309,17 @@
 							</div>
 						</div>
 					</div>
-				</div>
-		
+			</div>
+			
 		<!-- Scripts -->
 			<script src="../assets/js/jquery.min.js"></script>
 			<script src="../assets/js/skel.min.js"></script>
 			<script src="../assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="../assets/js/main.js"></script>
+			<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
 			<script type="text/javascript" src="js_validate_story.js"></script>
 			<script type="text/javascript" src="js_validate_event.js"></script>
 			<script type="text/javascript" src="js_validate_news.js"></script>
-			<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
 	</body>
 </html>

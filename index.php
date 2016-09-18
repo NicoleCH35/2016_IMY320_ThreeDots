@@ -205,7 +205,7 @@
 						echo '<article class="post">';
 						echo '<header>';
 						echo '<div class="title">';
-						echo '<h2><a href="#">' . $title . '</a></h2>';
+						echo '<h2><a href="pages/stories.php">' . $title . '</a></h2>';
 						echo '<p>' . $desc . '</p>';
 						echo '</div>';
 						echo '<div class="meta">';
@@ -271,11 +271,11 @@
 
 								echo '<article class="mini-post">';
 								echo '<header>';
-								echo '<h3><a href="#">' . $eventName . '</a></h3>';
+								echo '<h3><a href="pages/events.php">' . $eventName . '</a></h3>';
 								echo '<div class="published"><time  datetime="' . $startDate . '">' . $startDate . '</time> - <time  datetime="' . $endDate . '">' . $endDate . '</time></div>';
 								echo '<a href="#" class="author"><img src="' . $userImage . '" alt="' . $userName . '" /></a>';
 								echo '</header>';
-								echo '<a href="#" class="image"><img src="' . $image . '" alt="' . $desc . '" /></a>';
+								echo '<a href="#" class="image"><img src="images/Events/' . $image . '" alt="' . $desc . '" /></a>';
 								echo '</article>';
 							}
 						?>
@@ -312,7 +312,7 @@
 								echo '<li>';
 								echo '<article>';
 								echo '<header>';
-								echo '<h3><a href="#">' . $title . '</a></h3>';
+								echo '<h3><a href="pages/news.php">' . $title . '</a></h3>';
 								echo '<time class="published" datetime="' . $date . '">' . $date . '</time>';
 								echo '</header>';
 								echo '<a href="#" class="image"><img src="' . $image . '" alt="' . $news . '" /></a>';
