@@ -275,7 +275,7 @@
 								<div id="news" class="tab-pane fade">
 									<div class="item fixedSize">
 										</br>
-										<h1 class="text-center">Create an Event</h1>
+										<h1 class="text-center">Create News</h1>
 										<hr>
 										
 										<form role="form" class="centerAlign formSize" id="form_news" name="form_news" method="POST" enctype="multipart/form-data" action="validate_news.php">
@@ -318,6 +318,7 @@
 			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="../assets/js/main.js"></script>
 			<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
+			<script type="text/javascript" src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 			<script type="text/javascript" src="js_validate_story.js"></script>
 			<script type="text/javascript" src="js_validate_event.js"></script>
 			<script type="text/javascript" src="js_validate_news.js"></script>

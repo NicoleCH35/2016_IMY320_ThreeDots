@@ -51,21 +51,31 @@ $(document).ready(function ()
 				var endD = $("#end_D_event").val();
 				var endT = $("#end_T_event").val();
 				
+				//~ var startD = startDi.replace("/", "-");
+				//~ var endD = endDi.replace("/", "-");
+				//~ var startD = "2016-06-01";
+				//~ var endD = "2016-06-01";
+				//~ var startT = "07:30:00";
+				//~ var endT = "15:00:00";
+				
+				//alert(startD);
+				
 				//var image = $("#image").files[0];
 				$.post("validate_event.php", {eventName : name, descEvent : desc, locationEvent : location, startDEvent : startD, startTEvent : startT, endDEvent : endD, endTEvent : endT})
 				.done(function(resultMsg) 
 				{
-					var fd = new FormData();
-					fd.append('image', document.getElementById('image_event').files[0]);
-					var xhr = new XMLHttpRequest();
-					xhr.addEventListener("load", uploadComplete, false);
-					xhr.open("POST", "validate_image_event.php");
-					xhr.send(fd);
+					//~ var fd = new FormData();
+					//~ fd.append('image', document.getElementById('image_event').files[0]);
+					//~ var xhr = new XMLHttpRequest();
+					//~ xhr.addEventListener("load", uploadComplete, false);
+					//~ xhr.open("POST", "validate_image_event.php");
+					//~ xhr.send(fd);
 					
-					function uploadComplete(e)
-					{
-						window.location.replace("../index.php");
-					}
+					//~ function uploadComplete(e)
+					//~ {
+						//~ window.location.replace("../index.php");
+					//~ }
+					alert(resultMsg);
 				});
 			}
 		}
