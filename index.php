@@ -275,7 +275,7 @@
 								echo '<div class="published"><time  datetime="' . $startDate . '">' . $startDate . '</time> - <time  datetime="' . $endDate . '">' . $endDate . '</time></div>';
 								echo '<a href="#" class="author"><img src="' . $userImage . '" alt="' . $userName . '" /></a>';
 								echo '</header>';
-								echo '<a href="#" class="image"><img src="images/Events/' . $image . '" alt="' . $desc . '" /></a>';
+								echo '<a href="#" class="image"><img src="' . $image . '" alt="' . $desc . '" /></a>';
 								echo '</article>';
 							}
 						?>

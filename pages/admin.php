@@ -20,6 +20,8 @@
 		<link rel="stylesheet" href="../bootstrap-3.3.4-dist/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="style.css" />
 		<link rel="stylesheet" href="../assets/css/main.css" />
+			<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
+			<script type="text/javascript" src="js_validate_story.js"></script>
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
@@ -192,7 +194,7 @@
 										<h1 class="text-center">Create a Story</h1>
 										<hr>
 										
-										<form role="form" class="centerAlign formSize" id="form_story" name="form_story" method="POST" enctype="multipart/form-data" action="validate_story.php">
+										<form role="form" class="centerAlign formSize" id="form_story" name="form_story" method="POST" enctype="multipart/form-data" action="validate_story.php; return false;">
 											<div class="form-group textInCent">
 												<label for="title_story">Title:</label>
 												<input type="text" class="form-control" id="title_story" name="title_story">
@@ -203,7 +205,7 @@
 											</div>
 											<div class="form-group textInCent">
 												<label for="story">Story:</label>
-												<input type="text" class="form-control" id="story" name="story" style="height:100px;">
+												<input type="text" class="form-control" id="story_story" name="story_story" style="height:100px;">
 											</div>
 											<div class="form-group textInCent">
 												<label for="image_story">Image:</label>
@@ -227,7 +229,7 @@
 										<h1 class="text-center">Create an Event</h1>
 										<hr>
 										
-										<form role="form" class="centerAlign formSize" id="form_event" name="form_event" method="POST" enctype="multipart/form-data" action="validate_event.php">
+										<form role="form" class="centerAlign formSize" id="form_event" name="form_event" method="POST" enctype="multipart/form-data" action="validate_event.php; return false;">
 											<div class="form-group textInCent">
 												<label for="name_event">Event Name:</label>
 												<input type="text" class="form-control" id="name_event" name="name_event">
@@ -240,6 +242,23 @@
 												<label for="location_event">Location:</label>
 												<input type="text" class="form-control" id="location_event" name="location_event">
 											</div>
+											
+											
+											<div class="form-group textInCent">
+												<label for="workgroups">Workgroups required:</label>
+												<?php
+													//~ include 'dbconfig.php'; //connects to db
+													
+													//~ $sql = "SELECT DISTINCT type FROM workgroups"; 
+													//~ $test = $conn->query($sql);
+													//~ while ($row = $test->fetch_assoc())
+													//~ {
+														//~ echo '<input type="checkbox" class="form-control" id="workgroups" name="workgroups" value="'.$row["type"].'">';
+													//~ }
+												?>
+											</div>
+											
+											
 											<div class="form-group textInCent">
 												<label for="start_D_event">Start Date:</label>
 												<input type="date" class="form-control" id="start_D_event" name="start_D_event">
@@ -254,7 +273,7 @@
 											</div>
 											<div class="form-group textInCent">
 												<label for="start_T_event">End Time:</label>
-												<input type="time" class="form-control" id="start_T_event" name="start_T_event">
+												<input type="time" class="form-control" id="end_T_event" name="end_T_event">
 											</div>
 											<div class="form-group textInCent">
 												<label for="image_event">Event Image:</label>
@@ -278,14 +297,14 @@
 										<h1 class="text-center">Create News</h1>
 										<hr>
 										
-										<form role="form" class="centerAlign formSize" id="form_news" name="form_news" method="POST" enctype="multipart/form-data" action="validate_news.php">
+										<form role="form" class="centerAlign formSize" id="form_news" name="form_news" method="POST" enctype="multipart/form-data" action="validate_news.php; return false;">
 											<div class="form-group textInCent">
 												<label for="title_news">Title:</label>
 												<input type="text" class="form-control" id="title_news" name="title_news">
 											</div>
 											<div class="form-group textInCent">
 												<label for="news">News:</label>
-												<input type="text" class="form-control" id="news" name="news">
+												<input type="text" class="form-control" id="news_news" name="news">
 											</div>
 											<div class="form-group textInCent">
 												<label for="link_news">Link:</label>
@@ -317,9 +336,7 @@
 			<script src="../assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="../assets/js/main.js"></script>
-			<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
 			<script type="text/javascript" src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
-			<script type="text/javascript" src="js_validate_story.js"></script>
 			<script type="text/javascript" src="js_validate_event.js"></script>
 			<script type="text/javascript" src="js_validate_news.js"></script>
 	</body>

@@ -18,7 +18,7 @@
 	$startDTt = strtotime($startDTs);
 	$startDT = date('Y-m-d H:i:s', $startDTt);
 	
-	echo $startDT;
+	//echo $startDT;
 	
 	$endDTs = $endD . ' ' . $endT;
 	$endDTt = strtotime($endDTs);
@@ -56,6 +56,6 @@
 	$conn->close();
 	
 	
-	//echo $_SESSION['postid'];
+	echo $_SESSION['postid'];
 
 ?>

@@ -20,8 +20,8 @@
 		//~ $user = $row["id"];
 	//~ }
 	
-	//$user = $_SESSION['userid'];
-	$user = 1;
+	$user = $_SESSION['userid'];
+	//$user = 1;
 	
 	if ($_POST)
 	{

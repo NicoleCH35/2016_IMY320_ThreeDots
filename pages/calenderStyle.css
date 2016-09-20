@@ -8,7 +8,8 @@ tr.calendar-row{
 
 td.calendar-day	{ 
 	min-height:80px; 
-	font-size:11px; position:relative; 
+	font-size:11px; 
+	position:relative; 
 } 
 * html div.calendar-day { 
 	height:80px; 

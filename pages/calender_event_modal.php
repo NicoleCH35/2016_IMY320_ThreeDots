@@ -40,10 +40,11 @@
 					$result .= '<header>';
 						$result .= '<h3><a href="#">' . $eventName . '</a></h3>';
 						$result .= '<div class="published"><time  datetime="' . $startDate . '">' . $startDate . '</time> - <time  datetime="' . $endDate . '">' . $endDate . '</time></div>';
-						$result .= '<a href="#" class="author"><img src="' . $userImage . '" alt="" /></a>';
+						$result .= '<a href="#" class="author"><img src=".' . $userImage . '" alt="" /></a>';
+						$result .= '<br/>';
 						$result .= '<p>' . $desc . '</p>';
 					$result .= '</header>';
-					$result .= '<img src="../images/Events/' . $image . '" alt="" width="351" height="176" />';
+					$result .= '<img src=".' . $image . '" alt="" width="351" height="176" />';
 				$result .= '</article>';
 			$result .= '</div>';
 			
