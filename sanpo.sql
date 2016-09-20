@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2016 at 09:35 PM
+-- Generation Time: Sep 21, 2016 at 12:29 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -31,15 +31,21 @@ CREATE TABLE `comments` (
   `storyID` int(11) NOT NULL,
   `comment` text NOT NULL,
   `postedBy` int(11) NOT NULL,
-  `date` datetime NOT NULL
+  `datePosted` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`id`, `storyID`, `comment`, `postedBy`, `date`) VALUES
-(1, 1, 'Job well done!', 1, '2016-08-31 11:49:00');
+INSERT INTO `comments` (`id`, `storyID`, `comment`, `postedBy`, `datePosted`) VALUES
+(1, 1, 'Job well done!', 1, '2016-08-31 11:49:00'),
+(2, 1, 'COOL!', 2, '2016-09-08 15:36:36'),
+(3, 1, 'Looks Great! Well DONE!', 0, '2016-09-20 22:13:10'),
+(5, 2, 'Hello', 0, '2016-09-20 23:47:11'),
+(6, 1, 'WOW', 0, '2016-09-20 23:47:25'),
+(9, 2, 'sounds like a cult', 3, '2016-09-20 23:50:54'),
+(11, 2, 'cool', 0, '2016-09-21 00:24:48');
 
 -- --------------------------------------------------------
 
@@ -109,7 +115,8 @@ INSERT INTO `members` (`id`, `username`, `email`, `password`, `image`, `admin`) 
 (2, 'keziakoko', 'keziakoko2@gmail.com', '123', './images/profiles/unknown.png', 1),
 (3, 'jeff', 'janko.lilje@gmail.com', '123', 'images/profiles/unknown.png', 1),
 (4, 'max', 'keziakoko@gmail.com', '123', 'images/profiles/unknown.png', 0),
-(5, 'molly', 'keziakoko2@gmail.com', '123', 'images/profiles/unknown.png', 0);
+(5, 'molly', 'keziakoko2@gmail.com', '123', 'images/profiles/unknown.png', 0),
+(6, 'Zachary', 'zacharyk36@gmail.com ', '123', 'images/profiles/unknown.png', 0);
 
 -- --------------------------------------------------------
 
@@ -156,8 +163,8 @@ CREATE TABLE `stories` (
 --
 
 INSERT INTO `stories` (`id`, `title`, `description`, `story`, `date`, `postedBy`, `image`, `numLikes`) VALUES
-(1, 'School Outreach Successful', 'WE MANAGED TO RAISE ENOUGH FUNDS TO BUY THE SCHOOL SOME WELL DESERVED SPORTS EQUIPTMENT', 'From soccer balls to tennis rackets, this outreach got it all. The children of the school where extremely thankful and excited about their new sports equipment. From soccer balls to tennis rackets, this outreach got it all. The children of the school where extremely thankful and excited about their new sports equipment. From soccer balls to tennis rackets, this outreach got it all. The children of the school where extremely thankful and excited about their new sports equipment. From soccer balls to tennis rackets, this outreach got it all. The children of the school where extremely thankful and excited about their new sports equipment.', '2015-11-11', 1, './images/Soccer-GlenCarrie002.jpg', 2),
-(2, 'We need more members', 'If you are looking to help people in need, look no further!', 'If you are looking to help people in need, look no further! Become a member today. By becoming a member you will be able to help us fund raise for people in need.', '2016-08-31', 2, './images/join-us1.jpg', 0);
+(1, 'School Outreach Successful', 'WE MANAGED TO RAISE ENOUGH FUNDS TO BUY THE SCHOOL SOME WELL DESERVED SPORTS EQUIPTMENT', 'From soccer balls to tennis rackets, this outreach got it all. The children of the school where extremely thankful and excited about their new sports equipment. From soccer balls to tennis rackets, this outreach got it all. The children of the school where extremely thankful and excited about their new sports equipment. From soccer balls to tennis rackets, this outreach got it all. The children of the school where extremely thankful and excited about their new sports equipment. From soccer balls to tennis rackets, this outreach got it all. The children of the school where extremely thankful and excited about their new sports equipment.', '2015-11-11', 1, './images/Soccer-GlenCarrie002.jpg', 5),
+(2, 'We need more members', 'If you are looking to help people in need, look no further!', 'If you are looking to help people in need, look no further! Become a member today. By becoming a member you will be able to help us fund raise for people in need.', '2016-08-31', 2, './images/join-us1.jpg', 8);
 
 -- --------------------------------------------------------
 
@@ -201,7 +208,9 @@ INSERT INTO `workgrouptypes` (`id`, `workgroup`) VALUES
 (1, 'Decor'),
 (2, 'Catering'),
 (3, 'Event Coordination'),
-(4, 'Design');
+(4, 'Design'),
+(5, 'Marketing'),
+(6, 'Accounts');
 
 --
 -- Indexes for dumped tables
@@ -263,7 +272,7 @@ ALTER TABLE `workgrouptypes`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `events`
 --
@@ -278,7 +287,7 @@ ALTER TABLE `eventworkgroups`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `news`
 --
@@ -298,7 +307,7 @@ ALTER TABLE `workgroups`
 -- AUTO_INCREMENT for table `workgrouptypes`
 --
 ALTER TABLE `workgrouptypes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

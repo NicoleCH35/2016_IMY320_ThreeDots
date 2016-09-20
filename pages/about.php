@@ -178,7 +178,7 @@
 				<div class="container">
 					<article class="post">
 						<section id="intro" class="align-center">
-							<a href="index.php"><img src="../images/FireflyLogo.png" alt="" width="100px"/></a>
+							<a href="../index.php"><img src="../images/FireflyLogo.png" alt="" width="100px"/></a>
 							<header>
 								<h1>Fireflies</h1>
 								<h3>South African NPO</h3>

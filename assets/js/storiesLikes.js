@@ -9,11 +9,11 @@ $(document).ready(function ()
 		var postID = $(this).attr('data-id');
 		//alert(postID);
 
-		$.post("pages/like.php", {pid : postID})
+		$.post("like.php", {pid : postID})
 		.done(function(e)
 		{
 			//alert(e);
-			window.location.replace("index.php");
+			window.location.replace("stories.php");
 		});
 
 		
@@ -37,17 +37,13 @@ $(document).ready(function ()
 		var userID = $("#"+postID+"userID").val();
 		var comment = $("#"+postID+"commentText").val();
 
-		$.post("pages/comment.php", {pid : postID, uid: userID, cid: comment})
+		$.post("comment.php", {pid : postID, uid: userID, cid: comment})
 			.done(function(e)
 			{
 				//alert(e);
-				window.location.replace("index.php");
+				window.location.replace("stories.php");
 			});
-
-		// alert(formID);
-		// alert(postID +"PID");
-		// alert(userID +"UID");
-		// alert(comment +"comment");
+		
 
 	});
 
@@ -56,11 +52,11 @@ $(document).ready(function ()
 		e.preventDefault();
 		var commentID = $(this).attr('data-id');
 		alert(commentID);
-		$.post("pages/deleteComment.php", {cid: commentID})
+		$.post("deleteComment.php", {cid: commentID})
 			.done(function(e)
 			{
 				//alert(e);
-				window.location.replace("index.php");
+				window.location.replace("stories.php");
 			});
 
 	});

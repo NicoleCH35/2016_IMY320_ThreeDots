@@ -183,6 +183,11 @@
 
 				<?php
 
+					$commentsID = array();
+					$comments = array();
+					$commentsUser = array();
+					$commentsDate = array();
+
 					$sql = "SELECT * FROM stories ORDER BY id DESC"; //finds stories
 					$test = $conn->query($sql);
 
@@ -205,6 +210,23 @@
 							$profile = $row2['image'];
 						}
 
+						$sql = "SELECT * FROM comments WHERE storyID = '" . $postID . "'"; //finding the comments
+						$test2 = $conn->query($sql);
+						$c=0;
+						$numComments = mysqli_num_rows($test2);
+						while($row2 = $test2->fetch_assoc())
+						{
+							$commentsID[$c] = $row2['id'];
+							$comments[$c] = $row2['comment'];
+							$commentsUser[$c] = $row2['postedBy'];
+							$commentsDate[$c] = $row2['datePosted'];
+							$c++;
+						}
+
+
+
+						$divName = $postID."commentDiv";
+
 						echo '<article class="post">';
 						echo '<header>';
 						echo '<div class="title">';
@@ -213,7 +235,7 @@
 						echo '</div>';
 						echo '<div class="meta">';
 						echo '<time class="published" datetime="' . $date . '">' . $date . '</time>';
-						echo '<a href="#" class="author"><span class="name">' . $user . '</span><img src="' . $profile . '" alt="" /></a>';
+						echo '<span href="#" class="author"><span class="name">' . $user . '</span><img src="' . $profile . '" alt="" /></span>';
 						echo '</div>';
 						echo '</header>';
 						echo '<span class="image featured"><img src="' . $image . '" alt="' . $desc . '" /></span>';
@@ -221,12 +243,89 @@
 
 						echo '<footer>';
 						echo '<ul class="stats">';
-						echo '<li><a href="#">General</a></li>';
 						echo '<li><a href="#" class="icon fa-heart likes" data-id="'.$postID.'">' . $numLikes . '</a></li>';
-						echo '<li><a href="pages/stories.php" class="icon fa-comment">128</a></li>';
+						echo '<li><a href="#" class="icon fa-comment comments" data-id="'.$divName.'">'.$numComments.'</a></li>';
 						echo '</ul>';
 						echo '</footer>';
+						echo "<div class='commentsDiv' id='$divName'>";
+						$admin = false;
+						if(isset($_SESSION['sessionId']))
+						{
+							$uid=$_SESSION['userId'];
+							$sql = "SELECT admin FROM members WHERE id='$uid'";
+							$result = mysqli_query($conn, $sql);
+
+							while($row = $result->fetch_assoc())
+							{
+								$admin = $row["admin"];
+							}
+						}
+
+						for($a=0;$a<$c;$a++)
+						{
+							if($admin)
+							{
+								if($commentsUser[$a]==0)//unknown user
+								{
+
+									echo"<h6 style='font-size: 8pt;' data-id='$commentsID[$a]'>$comments[$a] - Unknown $commentsDate[$a] <a class='icon fa-remove deleteComment' data-id='$commentsID[$a]'></a></h6>";
+								}
+								else
+								{
+									$sql = "SELECT username FROM members WHERE id = '" .$commentsUser[$a]. "'"; //finding the comments
+									$test3 = $conn->query($sql);
+									while($row3 = $test3->fetch_assoc())
+									{
+										$commentedUser = $row3['username'];
+										echo"<h6 style='font-size: 8pt;' data-id='$commentsID[$a]'>$comments[$a] - $commentedUser $commentsDate[$a]<a class='icon fa-remove deleteComment' data-id='$commentsID[$a]'></a></h6>";
+									}
+								}
+							}
+							else
+							{
+								if($commentsUser[$a]==0)//unknown user
+								{
+
+									echo"<h6 style='font-size: 8pt;' data-id='$commentsID[$a]'>$comments[$a] - Unknown $commentsDate[$a]</h6>";
+								}
+								else
+								{
+									$sql = "SELECT username FROM members WHERE id = '" .$commentsUser[$a]. "'"; //finding the comments
+									$test3 = $conn->query($sql);
+									while($row3 = $test3->fetch_assoc())
+									{
+										$commentedUser = $row3['username'];
+										echo"<h6 style='font-size: 8pt;' data-id='$commentsID[$a]'>$comments[$a] - $commentedUser $commentsDate[$a]</h6>";
+									}
+								}
+							}
+
+						}
+						$FID = $postID."commentForm";
+						$UIDF = $postID."userID";
+						$CT = $postID."commentText";
+						if(isset($_SESSION['sessionId']))
+						{
+							$uid2=$_SESSION['userId'];
+							echo"<form class='commentForm' id='$FID' data-id='$postID'>
+								<input type='hidden' value='$uid2' id='$UIDF'>
+								<textarea cols='5' rows='1' style='font-size: 12pt;' id='$CT'></textarea>
+								<input type='submit' value='Comment' class='pull-right postComment' data-id='$FID'>
+							</form>";
+						}
+						else
+						{
+							echo"<form class='commentForm' id='$FID' data-id='$postID'>
+								<input type='hidden' value='0' id='$UIDF'>
+								<textarea cols='5' rows='1' style='font-size: 12pt;' id='$CT'></textarea>
+								<input type='submit' value='Comment' class='pull-right postComment' data-id='$FID'>
+							</form>";
+						}
+
+						echo "</div>";
 						echo '</article>';
+
+
 					}
 				?>
 
@@ -353,11 +452,13 @@
 		</div>
 
 		<!-- Scripts -->
+
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/skel.min.js"></script>
 		<script src="assets/js/util.js"></script>
-		<script src="assets/js/login.js"></script>
 		<script src="assets/js/likes.js"></script>
+		<script src="assets/js/login.js"></script>
+
 		<!--[if lte IE 8]>
 		<script src="assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="assets/js/main.js"></script>

@@ -200,7 +200,7 @@
 						echo '<article class="post">';
 						echo '<header>';
 						echo '<div class="title">';
-						echo '<h2><a href="#">' . $title . '</a></h2>';
+						echo '<h2>' . $title . '</h2>';
 						if($link != "")
 						{
 							echo '<p>Read more <a href="' . $link . '">here</a></p>';
@@ -208,7 +208,7 @@
 						echo '</div>';
 
 						echo '<div class="meta">';
-						echo '<a href="#" class="image"><img src="../' . $image . '" alt="" /></a>';
+						echo '<span class="image"><img src="../' . $image . '" alt="" /></span>';
 						echo '<time class="published" datetime="' . $date . '">' . $date . '</time>';
 						echo '</div>';
 						echo '</header>';

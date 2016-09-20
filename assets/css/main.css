@@ -1655,7 +1655,7 @@
 		}
 
 		.author:hover .name {
-			border-bottom-color: transparent;
+			/*border-bottom-color: transparent;*/
 		}
 
 /* Blurb */

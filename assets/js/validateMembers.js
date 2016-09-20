@@ -36,10 +36,10 @@ $(document).ready(function ()
 		var group = $("#wgName").val();
 		//alert(group);
 
-		$.post("addWorkgroup.php", {groupType: group, test:1})
+		$.post("addWorkgroup.php", {groupType: group})
 			.done(function(e)
 			{
-				alert(e);
+				//alert(e);
 				window.location.replace("../pages/admin.php");
 		});
 	});
