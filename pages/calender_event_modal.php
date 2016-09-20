@@ -52,11 +52,11 @@
 							{
 								$wgID = $row3['wgID'];
 							
-								$sql4 = "SELECT * FROM workgroups WHERE id = '" . $wgID . "'";
+								$sql4 = "SELECT * FROM workgrouptypes WHERE id = '" . $wgID . "'";
 								$test4 = $conn->query($sql4);
 								while($row4 = $test4->fetch_assoc())
 								{
-									$wgType = $row4['type'];
+									$wgType = $row4['workgroup'];
 									
 									$result .= $wgType . ', ';
 								}	

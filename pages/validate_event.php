@@ -33,7 +33,7 @@
 		//~ $user = $row["id"];
 	//~ }
 	
-	$user = $_SESSION['userid'];
+	$user = $_SESSION['userId'];
 	//$user = 1;
 	
 	if ($_POST)

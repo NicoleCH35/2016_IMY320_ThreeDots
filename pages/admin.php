@@ -263,11 +263,11 @@
 												<?php
 													include 'dbconfig.php'; //connects to db
 													
-													$sql = "SELECT DISTINCT type FROM workgroups"; 
+													$sql = "SELECT DISTINCT workgroup FROM workgrouptypes"; 
 													$test = $conn->query($sql);
 													while ($row = $test->fetch_assoc())
 													{
-														echo '<input type="checkbox" class="form-control workgroups" name="workgroups" value="'.$row["type"].'">'.$row["type"].'</input>';
+														echo '<input type="checkbox" class="form-control workgroups" name="workgroups" value="'.$row["workgroup"].'">'.$row["workgroup"].'</input>';
 														echo '<br/>';
 														//echo $row["type"];
 													}

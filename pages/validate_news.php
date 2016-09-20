@@ -12,7 +12,7 @@
 	
 	include 'dbconfig.php'; //connects to db
 	
-	$user = $_SESSION['userid'];
+	$user = $_SESSION['userId'];
 	//$user = 1;
 	
 	if ($_POST)

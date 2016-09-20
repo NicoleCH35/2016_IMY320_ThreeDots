@@ -9,7 +9,7 @@
 	
 	include 'dbconfig.php'; //connects to db
 	
-	$sql = "SELECT * FROM workgroups WHERE type = '".$wg."'"; 
+	$sql = "SELECT * FROM workgrouptypes WHERE workgroup = '".$wg."'"; 
 	$test = $conn->query($sql);
 	while ($row = $test->fetch_assoc())
 	{
