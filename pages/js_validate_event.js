@@ -84,6 +84,20 @@ $(document).ready(function ()
 					xhr.open("POST", "validate_image_event.php");
 					xhr.send(fd);
 					
+					//var postIDi = resultMsg;
+					var numCheckedWG = $('input:checked').length;
+					//alert(numCheckedWG);
+					
+					$('input:checked').each(function ()
+					{
+						var wg = $(this).val();
+						$.post("validate_wg.php", {wgName : wg})
+						.done(function(resultMsg) 
+						{
+							//alert(resultMsg);
+						});
+					});
+					
 					function uploadComplete(e)
 					{
 						window.location.replace("../index.php");

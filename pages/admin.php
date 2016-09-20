@@ -242,23 +242,6 @@
 												<label for="location_event">Location:</label>
 												<input type="text" class="form-control" id="location_event" name="location_event">
 											</div>
-											
-											
-											<div class="form-group textInCent">
-												<label for="workgroups">Workgroups required:</label>
-												<?php
-													//~ include 'dbconfig.php'; //connects to db
-													
-													//~ $sql = "SELECT DISTINCT type FROM workgroups"; 
-													//~ $test = $conn->query($sql);
-													//~ while ($row = $test->fetch_assoc())
-													//~ {
-														//~ echo '<input type="checkbox" class="form-control" id="workgroups" name="workgroups" value="'.$row["type"].'">';
-													//~ }
-												?>
-											</div>
-											
-											
 											<div class="form-group textInCent">
 												<label for="start_D_event">Start Date:</label>
 												<input type="date" class="form-control" id="start_D_event" name="start_D_event">
@@ -274,6 +257,21 @@
 											<div class="form-group textInCent">
 												<label for="start_T_event">End Time:</label>
 												<input type="time" class="form-control" id="end_T_event" name="end_T_event">
+											</div>
+											<div class="form-group textInCent">
+												<label for="workgroups">Workgroups required:</label>
+												<?php
+													include 'dbconfig.php'; //connects to db
+													
+													$sql = "SELECT DISTINCT type FROM workgroups"; 
+													$test = $conn->query($sql);
+													while ($row = $test->fetch_assoc())
+													{
+														echo '<input type="checkbox" class="form-control workgroups" name="workgroups" value="'.$row["type"].'">'.$row["type"].'</input>';
+														echo '<br/>';
+														//echo $row["type"];
+													}
+												?>
 											</div>
 											<div class="form-group textInCent">
 												<label for="image_event">Event Image:</label>

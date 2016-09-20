@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2016 at 11:36 PM
+-- Generation Time: Sep 20, 2016 at 03:39 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -58,14 +58,35 @@ CREATE TABLE IF NOT EXISTS `events` (
   `photo` text NOT NULL,
   `postedBy` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
 
 --
 -- Dumping data for table `events`
 --
 
 INSERT INTO `events` (`id`, `eventName`, `location`, `description`, `startDateTime`, `endDateTime`, `photo`, `postedBy`) VALUES
-(1, 'School Fundraiser', 'Lyttelton Primary School', 'We will be doing an art sale to raise funds for this school. Funds raised will go to buying textbooks and school supplies.', '2016-09-29 08:00:00', '2016-09-29 15:00:00', './images/event1.jpg', 1);
+(1, 'School Fundraiser', 'Lyttelton Primary School', 'We will be doing an art sale to raise funds for this school. Funds raised will go to buying textbooks and school supplies.', '2016-09-29 08:00:00', '2016-09-29 15:00:00', './images/Events/event1.jpg', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `eventworkgroups`
+--
+
+CREATE TABLE IF NOT EXISTS `eventworkgroups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `wgID` int(11) NOT NULL,
+  `eventID` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `eventworkgroups`
+--
+
+INSERT INTO `eventworkgroups` (`id`, `wgID`, `eventID`) VALUES
+(1, 1, 1),
+(2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -83,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `members` (
   `eventID` int(11) NOT NULL,
   `workGroupID` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `members`
@@ -92,7 +113,9 @@ CREATE TABLE IF NOT EXISTS `members` (
 INSERT INTO `members` (`id`, `username`, `email`, `password`, `image`, `admin`, `eventID`, `workGroupID`) VALUES
 (1, 'NicoleCH', 'nicolech35@gmail.com', '123', './images/profiles/unknown.png', 1, 0, 0),
 (2, 'keziakoko', 'keziakoko2@gmail.com', '123', './images/profiles/unknown.png', 1, 0, 0),
-(3, 'jeff', 'j@j.com ', '123', 'images/profiles/unknown.png', 0, 0, 0);
+(3, 'jeff', 'j@j.com ', '123', 'images/profiles/unknown.png', 0, 0, 0),
+(4, 'qwe', 'qwe@qwe.qwe ', 'qwe', 'images/profiles/unknown.png', 0, 0, 0),
+(5, 'asd', 'asd@asd.asd ', 'asd', 'images/profiles/unknown.png', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -109,14 +132,14 @@ CREATE TABLE IF NOT EXISTS `news` (
   `link` text NOT NULL,
   `postedBy` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `title`, `news`, `image`, `date`, `link`, `postedBy`) VALUES
-(1, '80% of South African schools are dysfunctional', 'This is why we do what we do. Helping those in need is extremely rewarding. If you are able to, please become a member today or donate so that we can help schools in need.', './images/news1.jpg', '2016-08-31 11:00:00', 'https://africacheck.org', 1);
+(1, '80% of South African schools are dysfunctional', 'This is why we do what we do. Helping those in need is extremely rewarding. If you are able to, please become a member today or donate so that we can help schools in need.', './images/News/news1.jpg', '2016-08-31 11:00:00', 'https://africacheck.org', 1);
 
 -- --------------------------------------------------------
 
@@ -134,15 +157,15 @@ CREATE TABLE IF NOT EXISTS `stories` (
   `image` text NOT NULL,
   `numLikes` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `stories`
 --
 
 INSERT INTO `stories` (`id`, `title`, `description`, `story`, `date`, `postedBy`, `image`, `numLikes`) VALUES
-(1, 'School Outreach Successful', 'WE MANAGED TO RAISE ENOUGH FUNDS TO BUY THE SCHOOL SOME WELL DESERVED SPORTS EQUIPTMENT', 'From soccer balls to tennis rackets, this outreach got it all. The children of the school where extremely thankful and excited about their new sports equipment. From soccer balls to tennis rackets, this outreach got it all. The children of the school where extremely thankful and excited about their new sports equipment. From soccer balls to tennis rackets, this outreach got it all. The children of the school where extremely thankful and excited about their new sports equipment. From soccer balls to tennis rackets, this outreach got it all. The children of the school where extremely thankful and excited about their new sports equipment.', '2015-11-11', 1, './images/Soccer-GlenCarrie002.jpg', 2),
-(2, 'We need more members', 'If you are looking to help people in need, look no further!', 'If you are looking to help people in need, look no further! Become a member today. By becoming a member you will be able to help us fund raise for people in need.', '2016-08-31', 2, './images/join-us1.jpg', 0);
+(1, 'School Outreach Successful', 'WE MANAGED TO RAISE ENOUGH FUNDS TO BUY THE SCHOOL SOME WELL DESERVED SPORTS EQUIPTMENT', 'From soccer balls to tennis rackets, this outreach got it all. The children of the school where extremely thankful and excited about their new sports equipment.', '2015-11-11', 1, './images/Stories/Soccer-GlenCarrie002.jpg', 2),
+(2, 'We need more members', 'If you are looking to help people in need, look no further!', 'If you are looking to help people in need, look no further! Become a member today. By becoming a member you will be able to help us fund raise for people in need.', '2016-08-31', 2, './images/Stories/join-us1.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -154,14 +177,15 @@ CREATE TABLE IF NOT EXISTS `workgroups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `workgroups`
 --
 
 INSERT INTO `workgroups` (`id`, `type`) VALUES
-(1, 'Decor');
+(1, 'Decor'),
+(2, 'Design');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -38,13 +38,31 @@
 				$result .= '<span class="close">x</span>';
 				$result .= '<article class="mini-post">';
 					$result .= '<header>';
+						$result .= '<img src=".' . $image . '" alt="" width="351" height="176" />';
 						$result .= '<h3><a href="#">' . $eventName . '</a></h3>';
 						$result .= '<div class="published"><time  datetime="' . $startDate . '">' . $startDate . '</time> - <time  datetime="' . $endDate . '">' . $endDate . '</time></div>';
 						$result .= '<a href="#" class="author"><img src=".' . $userImage . '" alt="" /></a>';
 						$result .= '<br/>';
+						
 						$result .= '<p>' . $desc . '</p>';
+						$result .= '<p>Workgroups involved: ';
+							$sql3 = "SELECT * FROM eventworkgroups WHERE eventID = '" . $eventID . "'";
+							$test3 = $conn->query($sql3);
+							while($row3 = $test3->fetch_assoc())
+							{
+								$wgID = $row3['wgID'];
+							
+								$sql4 = "SELECT * FROM workgroups WHERE id = '" . $wgID . "'";
+								$test4 = $conn->query($sql4);
+								while($row4 = $test4->fetch_assoc())
+								{
+									$wgType = $row4['type'];
+									
+									$result .= $wgType . ', ';
+								}	
+							}
+						$result .= '</p>';
 					$result .= '</header>';
-					$result .= '<img src=".' . $image . '" alt="" width="351" height="176" />';
 				$result .= '</article>';
 			$result .= '</div>';
 			
