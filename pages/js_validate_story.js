@@ -1,13 +1,13 @@
 $(document).ready(function () 
 {
 	tooBig = false;
-	
+	//alert("ready");
 	///////////////////////////////////////////////////////////////////////////////////////////////////
 	//POST_CREATION_VALIDATION
 	$('#submit_story').on("click", function (e)
 	{
 		e.preventDefault();
-		//alert("clicked");
+		alert("clicked");
 		var isError = false;
 		var emptyInput;
 		
@@ -34,7 +34,7 @@ $(document).ready(function ()
 			//if all fields filled then check them using php
 			///////////////////////////////////////////////////////////////////////////////////////////////////
 			//POST_CREATION_PHPCHECK
-			
+			//alert("gonna POST");
 			if (tooBig == true)
 			{
 				$('#errorMsg_story').html('Image is too large. Max file size is 500kB.');
@@ -42,10 +42,10 @@ $(document).ready(function ()
 			}
 			else //everything is fine and form can be submitted and uploaded
 			{
-				//alert("gonna POST");
+				alert("gonna POST");
 				var title = $("#title_story").val();
 				var desc = $("#desc_story").val();
-				var story = $("#story").val();
+				var story = $("#story_story").val();
 				
 				//var image = $("#image").files[0];
 				$.post("validate_story.php", {titleStory : title, descStory : desc, storyText : story})

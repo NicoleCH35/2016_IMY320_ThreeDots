@@ -13,8 +13,16 @@
 	$endT = $_POST["endTEvent"];
 	$date = date("Y-m-d");
 	//$image = $_POST["postImage"];
-	$startDT = $startD + $startT;
-	$endDT = $endD + $endT;
+	
+	$startDTs = $startD . ' ' . $startT;
+	$startDTt = strtotime($startDTs);
+	$startDT = date('Y-m-d H:i:s', $startDTt);
+	
+	//echo $startDT;
+	
+	$endDTs = $endD . ' ' . $endT;
+	$endDTt = strtotime($endDTs);
+	$endDT = date('Y-m-d H:i:s', $endDTt);
 	
 	include 'dbconfig.php'; //connects to db
 	
@@ -25,17 +33,17 @@
 		//~ $user = $row["id"];
 	//~ }
 	
-	//$user = $_SESSION['userid'];
-	$user = 1;
+	$user = $_SESSION['userId'];
+	//$user = 1;
 	
 	if ($_POST)
 	{
 		
-		$sql = "INSERT INTO events (eventName, location, description, startDateTime, endDateTime, postedBy) VALUES ('".$name."', '".$location."', '".$desc."', '".$startDT."', '".$endDT."', '0')";
+		$sql = "INSERT INTO events (eventName, location, description, startDateTime, endDateTime, postedBy) VALUES ('".$name."', '".$location."', '".$desc."', '".$startDT."', '".$endDT."', '".$user."')";
 		//echo $sql;
 		$result = $conn->query($sql);
 		
-		$sql = "SELECT * FROM events WHERE eventName = '".$title."' AND description = '".$desc."'"; 
+		$sql = "SELECT * FROM events WHERE eventName = '".$name."' AND description = '".$desc."'"; 
 		$test = $conn->query($sql);
 		while ($row = $test->fetch_assoc())
 		{

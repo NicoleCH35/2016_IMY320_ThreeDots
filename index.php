@@ -237,7 +237,7 @@
 
 				<!-- Intro -->
 				<section id="intro">
-					<a href="index.php" class="logo"><img src="images/sa_flag.gif" alt=""/></a>
+					<a href="index.php" class="logo"><img src="images/FireflyLogo.png" alt=""/></a>
 					<header>
 						<h1>Fireflies</h1>
 						<h3>South African NPO</h3>
@@ -278,7 +278,7 @@
 								echo '<div class="published"><time  datetime="' . $startDate . '">' . $startDate . '</time> - <time  datetime="' . $endDate . '">' . $endDate . '</time></div>';
 								echo '<a href="#" class="author"><img src="' . $userImage . '" alt="' . $userName . '" /></a>';
 								echo '</header>';
-								echo '<a href="#" class="image"><img src="images/Events/' . $image . '" alt="' . $desc . '" /></a>';
+								echo '<a href="#" class="image"><img src="' . $image . '" alt="' . $desc . '" /></a>';
 								echo '</article>';
 							}
 						?>
@@ -344,7 +344,7 @@
 						<li><a href="http://www.instagram.com" class="fa-instagram"><span class="label">Instagram</span></a></li>
 						<li><a href="pages/about.php" class="fa-envelope"><span class="label">Contact Us</span></a></li>
 					</ul>
-					<p class="copyright">&copy; ThreeDots. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a
+					<p class="copyright">&copy; ThreeDots. This is a demo site. No information on this site should be taken seriously. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a
 							href="http://unsplash.com">Unsplash</a>.</p>
 				</section>
 
@@ -361,7 +361,7 @@
 		<!--[if lte IE 8]>
 		<script src="assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="assets/js/main.js"></script>
-			<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
 
 	</body>
 </html>

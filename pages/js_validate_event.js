@@ -10,6 +10,7 @@ $(document).ready(function ()
 		//alert("clicked");
 		var isError = false;
 		var emptyInput;
+		var errorMsg = '';
 		
 		$('#form_event input:not(#submit_event)').each( function(index) //for each input except formSubmit
 		{
@@ -19,13 +20,35 @@ $(document).ready(function ()
 				{
 					isError = true;
 					emptyInput = $(this); //get first input with error
+					errorMsg = 'Please fill in all the form fields';
 				}
 			}
+			
+			var startD = new Date($("#start_D_event").val());
+			var startT = $("#start_T_event").val();
+			var endD = new Date($("#end_D_event").val());
+			var endT = $("#end_T_event").val();
+			if (endD < startD) //end event before it even starts
+			{
+				isError = true;
+				errorMsg = 'End date before start date';
+				emptyInput = $("#end_D_event");
+			}
+			else if (endD.getTime() == startD.getTime()) //start and end on same day.. check time
+			{
+				if (endT < startT) //event ends before it starts
+				{
+					isError = true;
+					errorMsg = 'End time before start time';
+					emptyInput = $("#end_T_event");
+				}
+			}
+			
 		});
 		
 		if (isError == true)
 		{
-			$('#errorMsg_event').html('Please fill in all the form fields').css('color', 'red');
+			$('#errorMsg_event').html(errorMsg).css('color', 'red');
 			$(emptyInput).css('border-color', 'red');
 			//return false; //do not submit as there are empty fields
 		}
@@ -51,7 +74,6 @@ $(document).ready(function ()
 				var endD = $("#end_D_event").val();
 				var endT = $("#end_T_event").val();
 				
-				//var image = $("#image").files[0];
 				$.post("validate_event.php", {eventName : name, descEvent : desc, locationEvent : location, startDEvent : startD, startTEvent : startT, endDEvent : endD, endTEvent : endT})
 				.done(function(resultMsg) 
 				{
@@ -62,10 +84,25 @@ $(document).ready(function ()
 					xhr.open("POST", "validate_image_event.php");
 					xhr.send(fd);
 					
+					//var postIDi = resultMsg;
+					var numCheckedWG = $('input:checked').length;
+					//alert(numCheckedWG);
+					
+					$('input:checked').each(function ()
+					{
+						var wg = $(this).val();
+						$.post("validate_wg.php", {wgName : wg})
+						.done(function(resultMsg) 
+						{
+							//alert(resultMsg);
+						});
+					});
+					
 					function uploadComplete(e)
 					{
 						window.location.replace("../index.php");
 					}
+					//alert(resultMsg);
 				});
 			}
 		}
