@@ -1,3 +1,12 @@
+<?php
+	if(session_status()==PHP_SESSION_NONE)
+	{
+		session_start();
+	}
+	include 'dbconfig.php';
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -5,15 +14,17 @@
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<!--[if lte IE 8]>
-		<script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="../assets/css/main.css"/>
+		<link rel="stylesheet" href="calenderStyle.css"/>
+		<link rel="stylesheet" href="cal_modal_style.css" />
 		<!--[if lte IE 9]>
-		<link rel="stylesheet" href="assets/css/ie9.css"/><![endif]-->
+		<link rel="stylesheet" href="../assets/css/ie9.css"/><![endif]-->
 		<!--[if lte IE 8]>
-		<link rel="stylesheet" href="assets/css/ie8.css"/><![endif]-->
+		<link rel="stylesheet" href="../assets/css/ie8.css"/><![endif]-->
 	</head>
 	<body>
-		
+
 		<!-- Wrapper -->
 		<div id="wrapper">
 
@@ -32,6 +43,7 @@
 								$uid=$_SESSION['userId'];
 								$sql = "SELECT admin FROM members WHERE id='$uid'";
 								$result = mysqli_query($conn, $sql);
+								$admin = false;
 								while($row = $result->fetch_assoc())
 								{
 									$admin = $row["admin"];
@@ -109,6 +121,7 @@
 								$uid=$_SESSION['userId'];
 								$sql = "SELECT admin FROM members WHERE id='$uid'";
 								$result = mysqli_query($conn, $sql);
+								$admin = false;
 								while($row = $result->fetch_assoc())
 								{
 									$admin = $row["admin"];
@@ -162,19 +175,18 @@
 
 			<!-- Main -->
 			<div id="main">
-				
+
 			</div>
 
-
-		
-		<!-- Scripts -->
-		<script src="../assets/js/jquery.min.js"></script>
-		<script src="../assets/js/skel.min.js"></script>
-		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/login.js"></script>
-		<!--[if lte IE 8]>
-		<script src="../assets/js/ie/respond.min.js"></script><![endif]-->
-		<script src="../assets/js/main.js"></script>
-
+			<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/login.js"></script>
+			<!--[if lte IE 8]>
+			<script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
+			<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
+			<script src="js_calender.js"></script>
 	</body>
 </html>

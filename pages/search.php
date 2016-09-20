@@ -241,6 +241,7 @@
 								$uid=$_SESSION['userId'];
 								$sql = "SELECT admin FROM members WHERE id='$uid'";
 								$result = mysqli_query($conn, $sql);
+								$admin = false;
 								while($row = $result->fetch_assoc())
 								{
 									$admin = $row["admin"];
@@ -318,6 +319,7 @@
 								$uid=$_SESSION['userId'];
 								$sql = "SELECT admin FROM members WHERE id='$uid'";
 								$result = mysqli_query($conn, $sql);
+								$admin = false;
 								while($row = $result->fetch_assoc())
 								{
 									$admin = $row["admin"];

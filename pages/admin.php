@@ -43,6 +43,7 @@
 										$uid=$_SESSION['userId'];
 										$sql = "SELECT admin FROM members WHERE id='$uid'";
 										$result = mysqli_query($conn, $sql);
+										$admin = false;
 										while($row = $result->fetch_assoc())
 										{
 											$admin = $row["admin"];
@@ -120,6 +121,7 @@
 											$uid=$_SESSION['userId'];
 											$sql = "SELECT admin FROM members WHERE id='$uid'";
 											$result = mysqli_query($conn, $sql);
+											$admin = false;
 											while($row = $result->fetch_assoc())
 											{
 												$admin = $row["admin"];
@@ -179,14 +181,16 @@
 								<li class="active"><a data-toggle="tab" href="#story">Story</a></li>
 								<li><a data-toggle="tab" href="#event">Event</a></li>
 								<li><a data-toggle="tab" href="#news">News</a></li>
-								<!--<li><a data-toggle="tab" href="#menu3">Posts you've shared</a></li>
-								<li><a data-toggle="tab" href="#menu4">Friend Requests</a></li>
+								<li><a data-toggle="tab" href="#workgroup">Workgroups</a></li>
+								<li><a data-toggle="tab" href="#member">Members</a></li>
+								<li><a data-toggle="tab" href="#message">Messages</a></li>
+								<!--<li><a data-toggle="tab" href="#menu4">Friend Requests</a></li>
 								<li><a data-toggle="tab" href="#menu5" id="msgTab">Messages</a></li>-->
 							</ul>
 						
 							<div class="tab-content">
-				
-								<div id="story" class="tab-pane fade in active">
+
+								<div id="story" class="tab-pane fade in active v">
 									<div class="item active fixedSize">
 										</br>
 										<h1 class="text-center">Create a Story</h1>
@@ -306,20 +310,362 @@
 										</form>
 									</div>
 								</div>
+
+								<div id="message" class="tab-pane fade">
+									<div class="item fixedSize">
+										<ul class="nav nav-tabs">
+											<li class="active"><a data-toggle="tab" href="#indi">Individual</a></li>
+											<li><a data-toggle="tab" href="#wg">Work Group</a></li>
+											<li><a data-toggle="tab" href="#eventM">Event Team</a></li>
+										</ul>
+
+										<div class="tab-content">
+
+											<div id="indi" class="tab-pane fade in active">
+												</br>
+												<h1 class="text-center">Send a Message to an Individual</h1>
+												<hr>
+
+												<form role="form" class="centerAlign formSize" id="form_iMessage" name="form_iMessage" method="POST" enctype="multipart/form-data" action="#">
+
+													<div class="form-group textInCent">
+														<label for="to">Recipient:</label>
+														<select class="form-control" id="userSelect">
+															<option value="Recipient" disabled selected>Please Select Recipient</option>
+															<?php
+																$sql = "SELECT username,id FROM members";
+																$result = mysqli_query($conn, $sql);
+																$name = "";
+																$id=0;
+																while($row = $result->fetch_assoc())
+																{
+																	$name = $row["username"];
+																	$id = $row["id"];
+																	echo"<option value='$id'>$name</option>";
+																}
+																echo "\n \n Kind Regards \n $name"
+															?>
+														</select>
+
+													</div>
+
+													<div class="form-group textInCent">
+														<label for="subjI">Subject:</label>
+														<input type="text" class="form-control" id="subjI" name="subjI">
+													</div>
+													<div class="form-group textInCent">
+														<label for="bodyI">Message</label>
+														<textarea rows="4" cols="10" placeholder="Message" class="form-control" id="bodyI" name="bodyI">
+															<?php
+																$uid=$_SESSION['userId'];
+																$sql = "SELECT username FROM members WHERE id='$uid'";
+																$result = mysqli_query($conn, $sql);
+																$name = "";
+																while($row = $result->fetch_assoc())
+																{
+																	$name = $row["username"];
+																}
+																echo "\n \n Kind Regards \n $name"
+															?>
+														</textarea>
+													</div>
+
+													<span id="errorMsg_iMessage"></span><br/><br/>
+													<button type="submit" class="btn btn-default" id="iMessage" name="iMessage">Send!</button>
+												</form>
+											</div>
+
+
+
+
+											<div id="wg" class="tab-pane fade">
+												</br>
+												<h1 class="text-center">Send a Message to a Work Group</h1>
+												<hr>
+
+												<form role="form" class="centerAlign formSize" id="form_wgMessage" name="form_wgMessage" method="POST" enctype="multipart/form-data" action="#">
+
+													<div class="form-group textInCent">
+														<label>Recipient:</label>
+														<?php
+															$sql = "SELECT id, workgroup FROM workgrouptypes";
+															$result = mysqli_query($conn, $sql);
+															$name = "";
+															$id=0;
+															while($row = $result->fetch_assoc())
+															{
+																$name = $row["workgroup"];
+																$id = $row["id"];
+																echo"<input class='WGTeams' type='radio' name='workgroup' value='$id'/>$name<br>";
+															}
+														?>
+													</div>
+
+													<div class="form-group textInCent">
+														<label for="subjW">Subject:</label>
+														<input type="text" class="form-control" id="subjW" name="subjW">
+													</div>
+													<div class="form-group textInCent">
+														<label for="bodyW">Message</label>
+														<textarea rows="4" cols="10" placeholder="Message" class="form-control" id="bodyW" name="bodyW">
+															<?php
+																$uid=$_SESSION['userId'];
+																$sql = "SELECT username FROM members WHERE id='$uid'";
+																$result = mysqli_query($conn, $sql);
+																$name = "";
+																while($row = $result->fetch_assoc())
+																{
+																	$name = $row["username"];
+																}
+																echo "\n \n Kind Regards \n $name"
+															?>
+														</textarea>
+													</div>
+
+													<span id="errorMsg_wMessage"></span><br/><br/>
+													<button type="submit" class="btn btn-default" id="wgMessage" name="wgMessage">Send!</button>
+												</form>
+											</div>
+
+
+											<div id="eventM" class="tab-pane fade">
+												</br>
+												<h1 class="text-center">Send a Message to an Event Team</h1>
+												<hr>
+
+												<form role="form" class="centerAlign formSize" id="form_eMessage" name="form_eMessage" method="POST" enctype="multipart/form-data" action="#">
+
+													<div class="form-group textInCent">
+														<label for="eventSelect">Event:</label>
+														<select class="form-control" id="eventSelect" name="eventSelect">
+															<option value="event" disabled selected>Please Select Event</option>
+															<?php
+																$sql = "SELECT eventName,startDateTime,endDateTime,id FROM events";
+																$result = mysqli_query($conn, $sql);
+																$name = "";
+																$id=0;
+																$endDate;
+																$startDate;
+																while($row = $result->fetch_assoc())
+																{
+																	$name = $row["eventName"];
+																	$id = $row["id"];
+																	$endDate = $row["endDateTime"];
+																	$startDate = $row["startDateTime"];
+																	echo"<option class='eventOptions' value='$id'>$name ($startDate - $endDate)</option>";
+																}
+															?>
+														</select>
+														<label>Team:</label>
+														<?php
+															$sql = "SELECT id, workgroup FROM workgrouptypes";
+															$result = mysqli_query($conn, $sql);
+															$name = "";
+															$id=0;
+															while($row = $result->fetch_assoc())
+															{
+																$name = $row["workgroup"];
+																$id = $row["id"];
+																echo"<input class='EventTeams' type='radio' name='EventTeams' value='$id'/>$name<br>";
+															}
+														?>
+
+
+													</div>
+
+													<div class="form-group textInCent">
+														<label for="subj">Subject:</label>
+														<input type="text" class="form-control" id="subjE" name="subj">
+													</div>
+
+													<div class="form-group textInCent">
+														<label for="bodyE">Message</label>
+														<textarea rows="4" cols="10" placeholder="Message" class="form-control" id="bodyE" name="bodyE">
+															<?php
+																$uid=$_SESSION['userId'];
+																$sql = "SELECT username FROM members WHERE id='$uid'";
+																$result = mysqli_query($conn, $sql);
+																$name = "";
+																while($row = $result->fetch_assoc())
+																{
+																	$name = $row["username"];
+																}
+																echo "\n\nKind Regards\n$name";
+															?>
+														</textarea>
+													</div>
+
+													<span id="errorMsg_eMessage"></span><br/><br/>
+													<button type="submit" class="btn btn-default" id="eMessage" name="eMessage">Send!</button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div id="member" class="tab-pane fade">
+									<div class="item active fixedSize">
+										</br>
+										<h1 class="text-center">Manage Members</h1>
+										<hr>
+
+										<form role="form" class="centerAlign formSize" id="form_members" name="form_members" method="POST" enctype="multipart/form-data" action="#">
+
+											<select class="form-control" id="memberSelect" name="memberSelect">
+												<option value="event" disabled selected>Please Select Member</option>
+												<?php
+													$sql = "SELECT id,username FROM members";
+													$result = mysqli_query($conn, $sql);
+													$name = "";
+													$id=0;
+													while($row = $result->fetch_assoc())
+													{
+														$name = $row["username"];
+														$id = $row["id"];
+														echo"<option class='eventOptions' value='$id'>$name</option>";
+													}
+
+												?>
+											</select>
+											<br/>
+												<?php
+													$sql = "SELECT id,username,admin FROM members";
+													$result = mysqli_query($conn, $sql);
+													$name = "";
+													$id=0;
+													while($row = $result->fetch_assoc())
+													{
+														$name = $row["username"];
+														$id = $row["id"];
+														$admin = $row["admin"];
+														$divID = $id . "div";
+														//echo $divID;
+														echo "
+														<div id='$divID' class='hideDivs'>
+															<h2>$name</h2>
+														";
+														$adminID = $id."isAdmin";
+														if($admin)
+														{
+															echo"<input class='isAdmin' type='checkbox' name='isAdmin' id='$adminID' value='$id' checked/>admin<br>";
+														}
+														else
+														{
+															echo"<input class='isAdmin' type='checkbox' name='isAdmin' id='$adminID' value='$id'/>admin<br>";
+														}
+
+														$sql2 = "SELECT typeID FROM workgroups WHERE userID = $id";
+														$result2 = mysqli_query($conn, $sql2);
+														$memberID = $id."memberTeamSelect";
+														echo "<select class='form-control' id='$memberID' name='memberTeamSelect'>";
+
+														if(mysqli_num_rows($result2) > 0)
+														{
+															echo "<option class='memberTeamOptions' value='none' disabled>Select a workgroup</option>";
+
+															while($row2 = $result2->fetch_assoc())
+															{
+																$typeID = $row2["typeID"];
+
+																$sql3 = "SELECT workgroup,id FROM workgrouptypes";
+																$result3 = mysqli_query($conn, $sql3);
+
+																while($row3 = $result3->fetch_assoc())
+																{
+																	$grouptype = $row3["workgroup"];
+																	$groupID = $row3["id"];
+																	if($row3["id"] == $typeID)//if it is their currently active group
+																	{
+																		echo "<option class='memberTeamOptions' value='$groupID' selected>$grouptype</option>";
+																	}
+																	else
+																	{
+																		echo "<option class='memberTeamOptions' value='$groupID'>$grouptype</option>";
+																	}
+
+																}
+
+
+															}
+														}
+														else
+														{
+															echo "<option class='memberTeamOptions' value='none' selected disabled>Select a workgroup</option>";
+															$sql3 = "SELECT workgroup,id FROM workgrouptypes";
+															$result3 = mysqli_query($conn, $sql3);
+
+															while($row3 = $result3->fetch_assoc())
+															{
+																$grouptype = $row3["workgroup"];
+																$groupID = $row3["id"];
+																echo "<option class='memberTeamOptions' value='$groupID'>$grouptype</option>";
+															}
+														}
+														echo "</select>";
+														echo"</div>";
+													}
+
+												?>
+
+
+											<span id="errorMsg_story"></span><br/><br/>
+											<button type="submit" class="btn btn-default" id="submit_Change" name="submit_Change">Update!</button>
+										</form>
+									</div>
+								</div>
+
+								<div id="workgroup" class="tab-pane fade">
+									<div class="item fixedSize">
+										</br>
+										<h1 class="text-center">Add a workgroup</h1>
+										<hr>
+										<h3 class="centerAlign">Current Work Groups</h3>
+										<ul class="centerAlign">
+											<?php
+												$sql = "SELECT workgroup FROM workgrouptypes ";
+												$result = mysqli_query($conn, $sql);
+
+												while($row = $result->fetch_assoc())
+												{
+													$wgName = $row["workgroup"];
+													echo"<li  style='list-style: none;'>$wgName</li>";
+												}
+											?>
+										</ul>
+										<br>
+										<form role="form" class="centerAlign formSize" id="form_workgroups" name="form_workgroups" method="POST" enctype="multipart/form-data" action="#">
+
+											<div class="form-group textInCent">
+												<label for="wgName" class="align-left">New Workgroup:</label>
+												<input type="text" class="form-control" id="wgName" name="wgName">
+											</div>
+											<span id="errorMsg_news"></span><br/><br/>
+											<button type="submit" class="btn btn-default" id="submit_workgroups" name="submit_workgroups">Add!</button>
+										</form>
+									</div>
+								</div>
+
 							</div>
 						</div>
 					</div>
 			</div>
 			
 		<!-- Scripts -->
+
+
 			<script src="../assets/js/jquery.min.js"></script>
+			<script type="text/javascript" src="../bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 			<script src="../assets/js/skel.min.js"></script>
 			<script src="../assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="../assets/js/main.js"></script>
 			<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
+
 			<script type="text/javascript" src="js_validate_story.js"></script>
 			<script type="text/javascript" src="js_validate_event.js"></script>
 			<script type="text/javascript" src="js_validate_news.js"></script>
+			<script type="text/javascript" src="../assets/js/validateMessages.js"></script>
+			<script type="text/javascript" src="../assets/js/validateMembers.js"></script>
+
 	</body>
 </html>
