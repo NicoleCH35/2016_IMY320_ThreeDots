@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2016 at 12:29 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 7.0.9
+-- Generation Time: Sep 21, 2016 at 01:46 PM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `sanpo`
@@ -26,13 +26,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `comments`
 --
 
-CREATE TABLE `comments` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `storyID` int(11) NOT NULL,
   `comment` text NOT NULL,
   `postedBy` int(11) NOT NULL,
-  `datePosted` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `datePosted` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `comments`
@@ -53,16 +54,17 @@ INSERT INTO `comments` (`id`, `storyID`, `comment`, `postedBy`, `datePosted`) VA
 -- Table structure for table `events`
 --
 
-CREATE TABLE `events` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `eventName` text NOT NULL,
   `location` text NOT NULL,
   `description` text NOT NULL,
   `startDateTime` datetime NOT NULL,
   `endDateTime` datetime NOT NULL,
   `photo` text NOT NULL,
-  `postedBy` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `postedBy` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `events`
@@ -77,11 +79,12 @@ INSERT INTO `events` (`id`, `eventName`, `location`, `description`, `startDateTi
 -- Table structure for table `eventworkgroups`
 --
 
-CREATE TABLE `eventworkgroups` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `eventworkgroups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `wgID` int(11) NOT NULL,
-  `eventID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `eventID` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `eventworkgroups`
@@ -97,14 +100,15 @@ INSERT INTO `eventworkgroups` (`id`, `wgID`, `eventID`) VALUES
 -- Table structure for table `members`
 --
 
-CREATE TABLE `members` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `members` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` text NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
   `image` text NOT NULL,
-  `admin` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `admin` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `members`
@@ -124,15 +128,16 @@ INSERT INTO `members` (`id`, `username`, `email`, `password`, `image`, `admin`) 
 -- Table structure for table `news`
 --
 
-CREATE TABLE `news` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` text NOT NULL,
   `news` text NOT NULL,
   `image` text NOT NULL,
   `date` datetime NOT NULL,
   `link` text NOT NULL,
-  `postedBy` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `postedBy` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `news`
@@ -144,19 +149,44 @@ INSERT INTO `news` (`id`, `title`, `news`, `image`, `date`, `link`, `postedBy`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `officialfiles`
+--
+
+CREATE TABLE IF NOT EXISTS `officialfiles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` text NOT NULL,
+  `name` text NOT NULL,
+  `filePath` text NOT NULL,
+  `dateUploaded` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `officialfiles`
+--
+
+INSERT INTO `officialfiles` (`id`, `type`, `name`, `filePath`, `dateUploaded`) VALUES
+(7, 'Document', 'Account Info', './images/OfficialUploads/accounting.jpg', '2016-09-21'),
+(11, 'Music', 'Official Song', './images/OfficialUploads/test.wav', '2016-09-21'),
+(12, 'File', 'Event Info', './images/OfficialUploads/Test.pdf', '2016-09-21');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `stories`
 --
 
-CREATE TABLE `stories` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `stories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` text NOT NULL,
   `description` text NOT NULL,
   `story` text NOT NULL,
   `date` date NOT NULL,
   `postedBy` int(11) NOT NULL,
   `image` text NOT NULL,
-  `numLikes` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `numLikes` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `stories`
@@ -172,11 +202,12 @@ INSERT INTO `stories` (`id`, `title`, `description`, `story`, `date`, `postedBy`
 -- Table structure for table `workgroups`
 --
 
-CREATE TABLE `workgroups` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `workgroups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `typeID` int(11) NOT NULL,
-  `userID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `userID` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `workgroups`
@@ -195,10 +226,11 @@ INSERT INTO `workgroups` (`id`, `typeID`, `userID`) VALUES
 -- Table structure for table `workgrouptypes`
 --
 
-CREATE TABLE `workgrouptypes` (
-  `id` int(11) NOT NULL,
-  `workgroup` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `workgrouptypes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `workgroup` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `workgrouptypes`
@@ -212,102 +244,6 @@ INSERT INTO `workgrouptypes` (`id`, `workgroup`) VALUES
 (5, 'Marketing'),
 (6, 'Accounts');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `events`
---
-ALTER TABLE `events`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `eventworkgroups`
---
-ALTER TABLE `eventworkgroups`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `members`
---
-ALTER TABLE `members`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `news`
---
-ALTER TABLE `news`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `stories`
---
-ALTER TABLE `stories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `workgroups`
---
-ALTER TABLE `workgroups`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `workgrouptypes`
---
-ALTER TABLE `workgrouptypes`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
---
--- AUTO_INCREMENT for table `events`
---
-ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `eventworkgroups`
---
-ALTER TABLE `eventworkgroups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `members`
---
-ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `news`
---
-ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `stories`
---
-ALTER TABLE `stories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `workgroups`
---
-ALTER TABLE `workgroups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `workgrouptypes`
---
-ALTER TABLE `workgrouptypes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -7,7 +7,7 @@ $(document).ready(function ()
 	$('#submit_story').on("click", function (e)
 	{
 		e.preventDefault();
-		alert("clicked");
+		//alert("clicked");
 		var isError = false;
 		var emptyInput;
 		
@@ -42,7 +42,7 @@ $(document).ready(function ()
 			}
 			else //everything is fine and form can be submitted and uploaded
 			{
-				alert("gonna POST");
+				//alert("gonna POST");
 				var title = $("#title_story").val();
 				var desc = $("#desc_story").val();
 				var story = $("#story_story").val();

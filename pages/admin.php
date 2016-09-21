@@ -183,6 +183,7 @@
 								<li class="active"><a data-toggle="tab" href="#story">Story</a></li>
 								<li><a data-toggle="tab" href="#event">Event</a></li>
 								<li><a data-toggle="tab" href="#news">News</a></li>
+								<li><a data-toggle="tab" href="#files">Files</a></li>
 								<li><a data-toggle="tab" href="#workgroup">Workgroups</a></li>
 								<li><a data-toggle="tab" href="#member">Members</a></li>
 								<li><a data-toggle="tab" href="#message">Messages</a></li>
@@ -325,6 +326,59 @@
 											<span id="errorMsg_news"></span><br/><br/>
 											<button type="submit" class="btn btn-default" id="submit_news" name="submit_news">Create!</button>
 										</form>
+									</div>
+								</div>
+								
+								<div id="files" class="tab-pane fade">
+									<div class="item fixedSize">
+										</br>
+										<h1 class="text-center">Store and download official files, documents and music here</h1>
+										<hr>
+										
+										<form role="form" class="centerAlign formSize" id="form_files" name="form_files" method="POST" enctype="multipart/form-data" action="validate_files.php; return false;">
+											<div class="form-group textInCent">
+												<label for="type_files">Type:</label>
+												<input type="text" class="form-control" id="type_files" name="type_files">
+											</div>
+											<div class="form-group textInCent">
+												<label for="name_files">Name:</label>
+												<input type="text" class="form-control" id="name_files" name="name_files">
+											</div>
+											<div class="form-group textInCent">
+												<label for="file_files">Upload File:</label>
+												<input type="file" class="form-control" id="file_files" name="file_files">
+												</br>
+											</div>
+											<span id="errorMsg_files"></span><br/><br/>
+											<button type="submit" class="btn btn-default" id="submit_files" name="submit_files">Save!</button>
+										</form>
+										<br/>
+										<h1 class="text-center">Files currently stored</h1>
+										<hr>
+										<div class="container">
+											<?php
+												
+												include 'dbconfig.php';
+												
+												$sql = "SELECT * FROM officialfiles"; 
+												$test = $conn->query($sql);
+												while ($row = $test->fetch_assoc())
+												{
+													$fileID = $row["id"];
+													$fileType = $row["type"];
+													$fileName = $row["name"];
+													$filePath = $row["filePath"];
+													$fileDate = $row["dateUploaded"];
+													
+													//<a href="download.php?file='.$filePath.'">Download</a>
+													
+													echo '<h6>'.$fileName.'</h6><span>Uploaded on: '.$fileDate.'     </span><a href=".'.$filePath.'" download="'.$fileName.'">Download</a>';
+													echo '<br/>';
+													echo '<br/>';
+												}
+												
+											?>
+										</div>
 									</div>
 								</div>
 
@@ -680,6 +734,7 @@
 			<script type="text/javascript" src="js_validate_story.js"></script>
 			<script type="text/javascript" src="js_validate_event.js"></script>
 			<script type="text/javascript" src="js_validate_news.js"></script>
+			<script type="text/javascript" src="js_validate_files.js"></script>
 			<script type="text/javascript" src="../assets/js/validateMessages.js"></script>
 			<script type="text/javascript" src="../assets/js/validateMembers.js"></script>
 
