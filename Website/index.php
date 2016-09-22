@@ -336,7 +336,7 @@
 
 				<!-- Intro -->
 				<section id="intro">
-					<a href="index.php" class="logo"><img src="images/FireflyLogo.png" alt=""/></a>
+					<a href="index.php"><img src="images/FireflyLogo.png" alt="" width="110px" /></a>
 					<header>
 						<h1>Fireflies</h1>
 						<h3>South African NPO</h3>

@@ -5,6 +5,8 @@
 ##### Nicole Hampshire 14015341
 ##### Kezia Kokosioulis 14081360
 ##### Janko Lilje 14049172
+
+### Hosted at: http://threedots.site88.net/
 =====
 ## Project Requirements
 ### Website:
@@ -95,4 +97,10 @@ Other:
 - HTML 5
 - jQuery
 - Javascript
+
+### Design Choices:
+- Font: We chose to use a sans serif font as they are better on the web. http://www.webdesignerdepot.com/2013/03/serif-vs-sans-the-final-battle/ It also matches our modern, minimal design style.
+- Overal feel: Modern and minimal. This ensures a professional and clean looking website.
+- Tiles: Each element sits in its own tile to ensure each element and its components can be easily distinguished from other elements.
+- Hamburger menu: Contains navigation with extra information about specific pages. It also contains the login form as it is small and shouldnt require an entire page to itself.
 

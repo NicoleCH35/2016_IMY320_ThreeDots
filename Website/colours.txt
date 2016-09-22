@@ -1,6 +1,0 @@
-3138DE - red
-4D7A00 - green
-952300 - blue
-12B6FF - yellow
-FFFFFF - white
-000000 - black
