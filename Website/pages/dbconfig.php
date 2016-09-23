@@ -7,7 +7,7 @@
 	$servername = "localhost";
 	$username = "root"; //root	
 	$passwordDB = ""; //blank	
-	$db = "test"; //point members
+	$db = "sanpo"; //point members
 
 	$conn = new mysqli($servername, $username, $passwordDB, $db);
 
