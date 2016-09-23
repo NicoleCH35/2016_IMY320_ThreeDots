@@ -40,9 +40,13 @@
 						<?php
 							if(isset($_SESSION['sessionId']))
 							{
+								// echo "<script>alert('set');</script>";
 								$uid=$_SESSION['userId'];
-								$sql = "SELECT admin FROM members WHERE id='$uid'";
-								$result = mysqli_query($conn, $sql);
+								$sql = $conn->prepare("SELECT admin FROM members WHERE id=?");
+								$sql->bind_param("i", $uid);
+						        $sql->execute();
+						        $result = $sql->get_result();
+								// $result = mysqli_query($conn, $sql);
 								$admin = false;
 								while($row = $result->fetch_assoc())
 								{
@@ -119,8 +123,10 @@
 							if(isset($_SESSION['sessionId']))
 							{
 								$uid=$_SESSION['userId'];
-								$sql = "SELECT admin FROM members WHERE id='$uid'";
-								$result = mysqli_query($conn, $sql);
+								$sql = $conn->prepare("SELECT admin FROM members WHERE id=?");
+								$sql->bind_param("i", $uid);
+						        $sql->execute();
+						        $result = $sql->get_result();
 								$admin = false;
 								while($row = $result->fetch_assoc())
 								{

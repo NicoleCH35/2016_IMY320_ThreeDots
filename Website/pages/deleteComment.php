@@ -12,8 +12,9 @@
 
 	$commentID = $_POST['cid'];
 
-	$sql = "DELETE FROM comments WHERE id = $commentID";
-	$result = $conn->query($sql);
+	$sql = $conn->prepare("DELETE FROM comments WHERE id = ?");
+	$sql->bind_param("i", $commentID);
+    $sql->execute();
 
 
 	$conn->close();

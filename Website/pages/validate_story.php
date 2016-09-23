@@ -26,12 +26,15 @@
 	if ($_POST)
 	{
 		
-		$sql = "INSERT INTO stories (title, description, story, date, postedBy, numLikes) VALUES ('".$title."', '".$desc."', '".$story."', '".$date."', '".$user."', '0')";
+		$sql = prepare("INSERT INTO stories (title, description, story, date, postedBy, numLikes) VALUES (?,?,?,?,?, '0')");
 		//echo $sql;
-		$result = $conn->query($sql);
+		$sql->bind_param("ssssi", $title, $desc, $story, $date, $user);
+        $sql->execute();
 		
-		$sql = "SELECT * FROM stories WHERE title = '".$title."' AND description = '".$desc."'"; 
-		$test = $conn->query($sql);
+		$sql = prepare("SELECT * FROM stories WHERE title = ? AND description = ?"); 
+		$sql->bind_param("ss", $title, $desc);
+        $sql->execute();
+        $test = $sql->get_result();
 		while ($row = $test->fetch_assoc())
 		{
 			$postId = $row["id"];

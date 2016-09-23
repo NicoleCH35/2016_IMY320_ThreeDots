@@ -15,9 +15,11 @@
 	//~ $sql = "UPDATE stories SET numLikes = '5' WHERE id = '".$pid."' ";
 	//~ $result = mysqli_query($conn, $sql);
 	
-	$sql = "UPDATE stories SET numLikes = numlikes+1 WHERE id = $pid";
+	$sql = $conn->prepare("UPDATE stories SET numLikes = numlikes+1 WHERE id = ?");
 	//echo $sql;
-	$result = $conn->query($sql);
+	$sql->bind_param("i", $pid);
+    $sql->execute();
+
 	
 	$conn->close();
 	

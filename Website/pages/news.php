@@ -39,9 +39,10 @@
 							if(isset($_SESSION['sessionId']))
 							{
 								$uid=$_SESSION['userId'];
-								$sql = "SELECT admin FROM members WHERE id='$uid'";
-								$result = mysqli_query($conn, $sql);
-								$admin = false;
+								$sql = $conn->prepare("SELECT admin FROM members WHERE id=?");
+								$sql->bind_param("i", $uid);
+						        $sql->execute();
+						        $result = $sql->get_result();
 								while($row = $result->fetch_assoc())
 								{
 									$admin = $row["admin"];
@@ -51,6 +52,8 @@
 									echo'<li><a href="admin.php">Admin</a></li>';
 
 								}
+
+								$sql->free_result();
 								echo'<li><a href="logout.php">Logout</a></li>';
 							}
 							else
@@ -117,8 +120,10 @@
 							if(isset($_SESSION['sessionId']))
 							{
 								$uid=$_SESSION['userId'];
-								$sql = "SELECT admin FROM members WHERE id='$uid'";
-								$result = mysqli_query($conn, $sql);
+								$sql = $conn->prepare("SELECT admin FROM members WHERE id=?");
+								$sql->bind_param("i", $uid);
+						        $sql->execute();
+						        $result = $sql->get_result();
 								$admin = false;
 								while($row = $result->fetch_assoc())
 								{
@@ -128,6 +133,8 @@
 								{
 									echo'<li><a href="admin.php"><h3>Admin</h3><p>Manage Site</p></a></li>';
 								}
+
+								$sql->free_result();
 
 							}
 							else
@@ -177,8 +184,10 @@
 
 				<?php
 
-					$sql = "SELECT * FROM news ORDER BY id DESC"; //finds stories
-					$test = $conn->query($sql);
+					$sql = $conn->prepare("SELECT * FROM news ORDER BY id DESC"); //finds stories
+					
+			        $sql->execute();
+			        $test = $sql->get_result();
 
 					while($row = $test->fetch_assoc())
 					{
@@ -190,8 +199,10 @@
 						$image = $row['image'];
 						$postedBy = $row['postedBy'];
 
-						$sql = "SELECT * FROM members WHERE id = '" . $postedBy . "'"; //finding the user
-						$test2 = $conn->query($sql);
+						$sql = $conn->prepare("SELECT * FROM members WHERE id = ?"); //finding the user
+						$sql->bind_param("i", $postedBy);
+				        $sql->execute();
+				        $test2 = $sql->get_result();
 						while($row2 = $test2->fetch_assoc())
 						{
 							$userImage = $row2['image'];
@@ -217,6 +228,8 @@
 
 						echo '</article>';
 					}
+
+					$sql->free_result();
 				?>
 
 

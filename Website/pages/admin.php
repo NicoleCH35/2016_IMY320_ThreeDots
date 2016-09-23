@@ -43,8 +43,10 @@
 									if(isset($_SESSION['sessionId']))
 									{
 										$uid=$_SESSION['userId'];
-										$sql = "SELECT admin FROM members WHERE id='$uid'";
-										$result = mysqli_query($conn, $sql);
+										$sql = $conn->prepare("SELECT admin FROM members WHERE id=?");
+										$sql->bind_param("i", $uid);
+								        $sql->execute();
+								        $result = $sql->get_result();
 										$admin = false;
 										while($row = $result->fetch_assoc())
 										{
@@ -121,8 +123,10 @@
 										if(isset($_SESSION['sessionId']))
 										{
 											$uid=$_SESSION['userId'];
-											$sql = "SELECT admin FROM members WHERE id='$uid'";
-											$result = mysqli_query($conn, $sql);
+											$sql = $conn->prepare("SELECT admin FROM members WHERE id=?");
+											$sql->bind_param("i", $uid);
+									        $sql->execute();
+									        $result = $sql->get_result();
 											$admin = false;
 											while($row = $result->fetch_assoc())
 											{
@@ -268,8 +272,10 @@
 												<?php
 													include 'dbconfig.php'; //connects to db
 													
-													$sql = "SELECT DISTINCT workgroup FROM workgrouptypes"; 
-													$test = $conn->query($sql);
+													$sql = $conn->prepare("SELECT DISTINCT workgroup FROM workgrouptypes"); 
+													// $sql->bind_param("ss", $user, $pass);
+											        $sql->execute();
+											        $test = $sql->get_result();
 													while ($row = $test->fetch_assoc())
 													{
 														echo '<input type="checkbox" class="form-control workgroups" name="workgroups" value="'.$row["workgroup"].'">'.$row["workgroup"].'</input>';
@@ -360,8 +366,10 @@
 												
 												include 'dbconfig.php';
 												
-												$sql = "SELECT * FROM officialfiles"; 
-												$test = $conn->query($sql);
+												$sql = $conn->prepare("SELECT * FROM officialfiles"); 
+												// $sql->bind_param("ss", $user, $pass);
+										        $sql->execute();
+										        $test = $sql->get_result();
 												while ($row = $test->fetch_assoc())
 												{
 													$fileID = $row["id"];
@@ -429,8 +437,10 @@
 														<textarea rows="4" cols="10" placeholder="Message" class="form-control" id="bodyI" name="bodyI">
 															<?php
 																$uid=$_SESSION['userId'];
-																$sql = "SELECT username FROM members WHERE id='$uid'";
-																$result = mysqli_query($conn, $sql);
+																$sql = $conn->prepare("SELECT username FROM members WHERE id=?");
+																$sql->bind_param("i", $uid);
+														        $sql->execute();
+														        $result = $sql->get_result();
 																$name = "";
 																while($row = $result->fetch_assoc())
 																{
@@ -481,8 +491,10 @@
 														<textarea rows="4" cols="10" placeholder="Message" class="form-control" id="bodyW" name="bodyW">
 															<?php
 																$uid=$_SESSION['userId'];
-																$sql = "SELECT username FROM members WHERE id='$uid'";
-																$result = mysqli_query($conn, $sql);
+																$sql = $conn->prepare("SELECT username FROM members WHERE id=?");
+																$sql->bind_param("i", $uid);
+														        $sql->execute();
+														        $result = $sql->get_result();
 																$name = "";
 																while($row = $result->fetch_assoc())
 																{
@@ -554,8 +566,10 @@
 														<textarea rows="4" cols="10" placeholder="Message" class="form-control" id="bodyE" name="bodyE">
 															<?php
 																$uid=$_SESSION['userId'];
-																$sql = "SELECT username FROM members WHERE id='$uid'";
-																$result = mysqli_query($conn, $sql);
+																$sql = $conn->prepare("SELECT username FROM members WHERE ?");
+																$sql->bind_param("i", $uid);
+														        $sql->execute();
+														        $result = $sql->get_result();
 																$name = "";
 																while($row = $result->fetch_assoc())
 																{
@@ -625,8 +639,10 @@
 															echo"<input class='isAdmin' type='checkbox' name='isAdmin' id='$adminID' value='$id'/>admin<br>";
 														}
 
-														$sql2 = "SELECT typeID FROM workgroups WHERE userID = $id";
-														$result2 = mysqli_query($conn, $sql2);
+														$sql2 = $conn->prepare("SELECT typeID FROM workgroups WHERE userID = ?");
+														$sql2->bind_param("i", $id);
+														$sql2->execute();
+														$result2 = $sql2->get_result();
 														$memberID = $id."memberTeamSelect";
 														echo "<select class='form-control' id='$memberID' name='memberTeamSelect'>";
 

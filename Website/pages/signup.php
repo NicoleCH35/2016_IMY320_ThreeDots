@@ -6,8 +6,8 @@
 	
 	include 'redirectLS.php';
 	
-	$failed1 = false;
-	$failed2 = false;
+	$_SESSION["failed1"] = false;
+	$_SESSION["failed2"] = false;
 	$message = "The Email Address you entered is in use. Please use another Email Address.";
 	$message2 = "The username you entered is in use. Please choose a different username.";
 
@@ -23,32 +23,39 @@
 		$user = $_POST['usernames'];
 		$email = $_POST['email'];
 		$pass = $_POST['passwords'];
+		$pass = hash("sha256", $pass);
 
 
-		$sql = "SELECT * FROM members WHERE email='$email'";
-		$result = mysqli_query($conn, $sql);
+		$sql = $conn->prepare("SELECT * FROM members WHERE email=?");
+		$sql->bind_param("s", $email);
+		$sql->execute();
+		$result = $sql->get_result();
 
 		if(mysqli_num_rows($result) > 0) //the email is in database
 		{
-			$failed1 = true;
+			$_SESSION["failed1"] = true;
 		} else
 		{
-			$sql2 = "SELECT * FROM members WHERE username='$user'";
-			$result2 = mysqli_query($conn, $sql2);
+			$sql2 = $conn->prepare("SELECT * FROM members WHERE username=?");
+			$sql2->bind_param("s", $user);
+			$sql2->execute();
+			$result2 = $sql2->get_result();
 
 			if(mysqli_num_rows($result2) > 0) //the email is in database
 			{
-				$failed2 = true;
+				$_SESSION["failed2"] = true;
 			} else
 			{
-				session_start();
-				$sql = "INSERT INTO members(username ,email, password,image) VALUES ('$user','$email ','$pass','images/profiles/unknown.png')";
+				// session_start();
+				$sql = $conn->prepare("INSERT INTO members(username ,email, password,image) VALUES (?,?,?,'images/profiles/unknown.png')");
+				$sql->bind_param("sss", $user,$email,$pass);
+				$sql->execute();
 
-				$result = mysqli_query($conn, $sql);
 
-
-				$sql = "SELECT * FROM members WHERE email='$email'";
-				$result = mysqli_query($conn, $sql);
+				$sql = $conn->prepare("SELECT * FROM members WHERE email=?");
+				$sql->bind_param("s", $email);
+		        $sql->execute();
+		        $result = $sql->get_result();
 
 				while($row = $result->fetch_assoc())
 				{
@@ -185,7 +192,7 @@
 						<?php
 							if(isset($_POST["submits"]))
 							{
-								if(!$failed2)
+								if(!$_SESSION["failed2"])
 								{
 									echo "value='" . $_POST['usernames'] . "'";
 								}
@@ -198,7 +205,7 @@
 						<?php
 							if(isset($_POST["submits"]))
 							{
-								if(!$failed1)
+								if(!$_SESSION["failed1"])
 								{
 									echo "value='" . $_POST['email'] . "'";
 								}
@@ -215,12 +222,12 @@
 					<?php
 						if(isset($_POST["submits"]))
 						{
-							if(!$failed2)
+							if(!$_SESSION["failed1"])
 							{
 								echo "<h4>$message2</h4>";
 							}
 
-							if(!$failed1)
+							if(!$_SESSION["failed2"])
 							{
 								echo "<h4>$message</h4>";
 							}

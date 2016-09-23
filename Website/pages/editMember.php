@@ -8,29 +8,40 @@
 	$user = $_POST["userID"];
 	$group = $_POST["groupType"];
 	$admin = $_POST["admin"];
+        echo "<script>alert('booga');</script>";
+	//echo "<script>alert($admin);</script>";
 
 	if($group == "none")//just update admin
 	{
-		$sql = "UPDATE members SET admin=$admin WHERE id=$user";
-		$result = mysqli_query($conn, $sql);
+		$sql = $conn->prepare("UPDATE members SET admin=$admin WHERE id=?");
+		$sql->bind_param("i", $user);
+        $res=$sql->execute();
+		// $result = mysqli_query($conn, $sql);
 	}
 	else//update both
 	{
-		$sql = "UPDATE members SET admin=$admin WHERE id=$user";
-		$result = mysqli_query($conn, $sql);
+		$sql = $conn->prepare("UPDATE members SET admin=$admin WHERE id=?");
+		$sql->bind_param("i", $user);
+        $res =$sql->execute();
 
-		$sql = "SELECT id FROM workgroups WHERE userID=$user";
-		$result = mysqli_query($conn, $sql);
 
-		if(mysqli_num_rows($result) > 0)//if in the table update
+		$sql = $conn->prepare("SELECT id FROM workgroups WHERE userID=?");
+		$sql->bind_param("i", $user);
+        $sql->execute();
+        $result = $sql->get_result();
+
+		if($result->num_rows > 0)//if in the table update
 		{
-			$sql2 = "UPDATE workgroups SET typeID=$group WHERE userID=$user";
-			$result2 = mysqli_query($conn, $sql2);
+			//echo "string";
+			$sql2 = $conn->prepare("UPDATE workgroups SET typeID=? WHERE userID=?");
+			$sql2->bind_param("ii", $group,$user);
+        	$sql2->execute();
 		}
 		else//insert
 		{
-			$sql2 = "INSERT INTO workgroups (typeID,userID) VALUES($group,$user)";
-			$result2 = mysqli_query($conn, $sql2);
+			$sql2 = $conn->prepare("INSERT INTO workgroups (typeID,userID) VALUES(?,?)");
+			$sql2->bind_param("ii", $group,$user);
+        	$sql2->execute();
 		}
 
 

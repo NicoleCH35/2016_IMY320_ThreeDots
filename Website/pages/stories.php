@@ -39,8 +39,10 @@
 							if(isset($_SESSION['sessionId']))
 							{
 								$uid=$_SESSION['userId'];
-								$sql = "SELECT admin FROM members WHERE id='$uid'";
-								$result = mysqli_query($conn, $sql);
+								$sql = $conn->prepare("SELECT admin FROM members WHERE id=?");
+								$sql->bind_param("i", $uid);
+						        $sql->execute();
+						        $result = $sql->get_result();
 								$admin = false;
 								while($row = $result->fetch_assoc())
 								{
@@ -117,8 +119,10 @@
 							if(isset($_SESSION['sessionId']))
 							{
 								$uid=$_SESSION['userId'];
-								$sql = "SELECT admin FROM members WHERE id='$uid'";
-								$result = mysqli_query($conn, $sql);
+								$sql = $conn->prepare("SELECT admin FROM members WHERE id=?");
+								$sql->bind_param("i", $uid);
+						        $sql->execute();
+						        $result = $sql->get_result();
 								$admin = false;
 								while($row = $result->fetch_assoc())
 								{
@@ -183,8 +187,10 @@
 					$commentsUser = array();
 					$commentsDate = array();
 
-					$sql = "SELECT * FROM stories ORDER BY id DESC"; //finds stories
-					$test = $conn->query($sql);
+					$sql = $conn->prepare("SELECT * FROM stories ORDER BY id DESC"); //finds stories
+					// $sql->bind_param("ss", $user, $pass);
+			        $sql->execute();
+			        $test = $sql->get_result();
 
 					while($row = $test->fetch_assoc())
 					{
@@ -197,16 +203,20 @@
 						$image = $row['image'];
 						$numLikes = $row['numLikes'];
 
-						$sql = "SELECT * FROM members WHERE id = '" . $userID . "'"; //finding the user
-						$test2 = $conn->query($sql);
+						$sql = $conn->prepare("SELECT * FROM members WHERE id = ?"); //finding the user
+						$sql->bind_param("i", $userID);
+				        $sql->execute();
+				        $test2 = $sql->get_result();
 						while($row2 = $test2->fetch_assoc())
 						{
 							$user = $row2['username'];
 							$profile = $row2['image'];
 						}
 
-						$sql = "SELECT * FROM comments WHERE storyID = '" . $postID . "'"; //finding the comments
-						$test2 = $conn->query($sql);
+						$sql = $conn->prepare("SELECT * FROM comments WHERE storyID = ?"); //finding the comments
+						$sql->bind_param("i", $postID);
+				        $sql->execute();
+				        $test2 = $sql->get_result();
 						$c=0;
 						$numComments = mysqli_num_rows($test2);
 						while($row2 = $test2->fetch_assoc())
@@ -247,8 +257,10 @@
 						if(isset($_SESSION['sessionId']))
 						{
 							$uid=$_SESSION['userId'];
-							$sql = "SELECT admin FROM members WHERE id='$uid'";
-							$result = mysqli_query($conn, $sql);
+							$sql = $conn->prepare("SELECT admin FROM members WHERE id=?");
+							$sql->bind_param("i", $uid);
+					        $sql->execute();
+					        $result = $sql->get_result();
 
 							while($row = $result->fetch_assoc())
 							{
@@ -267,8 +279,10 @@
 								}
 								else
 								{
-									$sql = "SELECT username FROM members WHERE id = '" .$commentsUser[$a]. "'"; //finding the comments
-									$test3 = $conn->query($sql);
+									$sql = $conn->prepare("SELECT username FROM members WHERE id = ?"); //finding the comments
+									$sql->bind_param("i", $commentsUser[$a]);
+							        $sql->execute();
+							        $test3 = $sql->get_result();
 									while($row3 = $test3->fetch_assoc())
 									{
 										$commentedUser = $row3['username'];
@@ -285,8 +299,10 @@
 								}
 								else
 								{
-									$sql = "SELECT username FROM members WHERE id = '" .$commentsUser[$a]. "'"; //finding the comments
-									$test3 = $conn->query($sql);
+									$sql = "SELECT username FROM members WHERE id = ?"; //finding the comments
+									$sql->bind_param("i", $commentsUser[$a]);
+							        $sql->execute();
+							        $test3 = $sql->get_result();
 									while($row3 = $test3->fetch_assoc())
 									{
 										$commentedUser = $row3['username'];

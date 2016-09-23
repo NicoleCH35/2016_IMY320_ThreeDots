@@ -39,12 +39,14 @@
 	if ($_POST)
 	{
 		
-		$sql = "INSERT INTO events (eventName, location, description, startDateTime, endDateTime, postedBy) VALUES ('".$name."', '".$location."', '".$desc."', '".$startDT."', '".$endDT."', '".$user."')";
-		//echo $sql;
-		$result = $conn->query($sql);
+		$sql = $conn->prepare("INSERT INTO events (eventName, location, description, startDateTime, endDateTime, postedBy) VALUES (?,?,?,?,?,?)");
+		$sql->bind_param("sssssi", $name, $location, $desc, $startDT, $endDT, $user);
+        $sql->execute();
 		
-		$sql = "SELECT * FROM events WHERE eventName = '".$name."' AND description = '".$desc."'"; 
-		$test = $conn->query($sql);
+		$sql = $conn->prepare("SELECT * FROM events WHERE eventName = ? AND description = ?"); 
+		$sql->bind_param("ss", $name, $desc);
+        $sql->execute();
+        $test = $sql->get_result();
 		while ($row = $test->fetch_assoc())
 		{
 			$postId = $row["id"];

@@ -18,16 +18,20 @@
 	if ($_POST)
 	{
 		
-		$sql = "INSERT INTO news (title, news, date, link, postedBy) VALUES ('".$title."', '".$news."', '".$date."', '".$link."', '".$user."')";
-		$result = $conn->query($sql);
+		$sql = $conn->prepare("INSERT INTO news (title, news, date, link, postedBy) VALUES (?, ?, ?, ?, ?)");
+		$sql->bind_param("ssssi", $title, $news,$date,$link, $user);
+        $sql->execute();
 		
-		$sql = "SELECT * FROM news WHERE title = '".$title."' AND news = '".$news."'"; 
-		$test = $conn->query($sql);
+		$sql = $conn->prepare("SELECT * FROM news WHERE title = ? AND news = ?"); 
+		$sql->bind_param("ss", $title, $news);
+        $sql->execute();
+        $test = $sql->get_result();
 		while ($row = $test->fetch_assoc())
 		{
 			$postId = $row["id"];
 		}
 		$_SESSION['postid'] = $postId;
+		$sql->free_result();
 	}
 	//return false;
 	

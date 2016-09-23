@@ -2,8 +2,10 @@
 
 	include "dbconfig.php";
 	$userID= $_SESSION['userId'];
-	$sql = "SELECT admin from members where id = $userID";
-	$results = mysqli_query($conn,$sql);
+	$sql = $conn->prepare("SELECT admin from members where id = ?");
+	$sql->bind_param("i", $userID);
+    $sql->execute();
+    $results = $sql->get_result();
 	
 	$row=$results->fetch_assoc();
 	$admin = $row['admin'];

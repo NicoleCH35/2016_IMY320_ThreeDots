@@ -21,10 +21,13 @@
 		$user = $_POST['username'];
 		$pass = $_POST['password'];
 
+		$pass = hash("sha256", $pass);
 
 
-		$sql = "SELECT * FROM members WHERE username='$user' AND password ='$pass'";
-		$result = mysqli_query($conn, $sql);
+		$sql = $conn->prepare("SELECT * FROM members WHERE username=? AND password =?");
+		$sql->bind_param("ss", $user, $pass);
+        $sql->execute();
+        $result = $sql->get_result();
 
 		if(mysqli_num_rows($result) > 0)
 		{

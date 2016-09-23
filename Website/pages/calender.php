@@ -36,8 +36,11 @@ function draw_calendar($month,$year){
 			
 				include 'dbconfig.php';
 				
-				$sql = "SELECT * FROM events WHERE startDateTime LIKE '$year-$month-$list_day %'";
-				$test = $conn->query($sql);
+				$sql = $conn->prepare("SELECT * FROM events WHERE startDateTime LIKE ?");
+				$sDT=$year.'-'.$month.'-'.$list_day.' %';
+				$sql->bind_param("s", $sDT);
+        		$sql->execute();
+				$test = $sql->get_result();
 				
 				if ($test->num_rows > 0)
 				{
@@ -52,8 +55,11 @@ function draw_calendar($month,$year){
 						$image = $row['photo'];
 						$postedBy = $row['postedBy'];
 
-						$sql = "SELECT * FROM members WHERE id = '" . $postedBy . "'"; //finding the user
-						$test2 = $conn->query($sql);
+						$sql = $conn->prepare("SELECT * FROM members WHERE id = ?"); //finding the user
+						$sql->bind_param("i", $postedBy);
+				        $sql->execute();
+				        $test2 = $sql->get_result();
+						// $test2 = $conn->query($sql);
 						while($row2 = $test2->fetch_assoc())
 						{
 							$user = $row2['username'];
@@ -67,6 +73,8 @@ function draw_calendar($month,$year){
 				{
 					$calendar.= str_repeat('<p> </p>',3);
 				}
+
+			$sql->free_result();
 			
 		$calendar.= '</td>';
 		if($running_day == 6):

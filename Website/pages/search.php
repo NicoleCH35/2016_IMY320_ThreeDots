@@ -42,8 +42,11 @@
 	///////////////////////////////////////////////////////////////EVENTS//////////////////////////////////////////////////////
 
 	//Search event Name
-	$sql = "SELECT * FROM events WHERE eventName LIKE '%$desc%'";
-	$result = mysqli_query($conn, $sql);
+	$sql = $conn->prepare("SELECT * FROM events WHERE eventName LIKE ?");
+	$eNamLike = '%'.$desc.'%';
+	$sql->bind_param("s", $eNamLike);
+    $sql->execute();
+    $result = $sql->get_result();
 	while($row = $result->fetch_assoc())
 	{
 		$eventID[$i] = $row['id'];
@@ -61,9 +64,11 @@
 
 
 	//search event location
-	$sql = "SELECT * FROM events WHERE location LIKE '%$desc%'";
-
-	$result = mysqli_query($conn, $sql);
+	$sql = $conn->prepare("SELECT * FROM events WHERE location LIKE ?");
+	$eNamLike = '%'.$desc.'%';
+	$sql->bind_param("s", $eNamLike);
+    $sql->execute();
+    $result = $sql->get_result();
 	while($row = $result->fetch_assoc())
 	{
 		$tempID = $row['id'];
@@ -83,9 +88,11 @@
 	}
 
 	//search event description
-	$sql = "SELECT * FROM events WHERE description LIKE '%$desc%'";
-
-	$result = mysqli_query($conn, $sql);
+	$sql = $sql = $conn->prepare("SELECT * FROM events WHERE description LIKE ?");
+	$eNamLike = '%'.$desc.'%';
+	$sql->bind_param("s", $eNamLike);
+    $sql->execute();
+    $result = $sql->get_result();
 	while($row = $result->fetch_assoc())
 	{
 		$tempID = $row['id'];
@@ -107,8 +114,11 @@
 
 	///////////////////////////////////////////////////////////////NEWS//////////////////////////////////////////////////////
 	//search news title
-	$sql = "SELECT * FROM news WHERE title LIKE '%$desc%'";
-	$result = mysqli_query($conn, $sql);
+	$sql = $conn->prepare("SELECT * FROM news WHERE title LIKE ?");
+	$eNamLike = '%'.$desc.'%';
+	$sql->bind_param("s", $eNamLike);
+    $sql->execute();
+    $result = $sql->get_result();
 	while($row = $result->fetch_assoc())
 	{
 		$newsID[$j] = $row['id'];
@@ -122,8 +132,11 @@
 	}
 
 	//search news news
-	$sql = "SELECT * FROM news WHERE news LIKE '%$desc%'";
-	$result = mysqli_query($conn, $sql);
+	$sql = $conn->prepare("SELECT * FROM news WHERE news LIKE ?");
+	$eNamLike = '%'.$desc.'%';
+	$sql->bind_param("s", $eNamLike);
+    $sql->execute();
+    $result = $sql->get_result();
 	while($row = $result->fetch_assoc())
 	{
 		$tempID = $row['id'];
@@ -143,8 +156,11 @@
 
 	///////////////////////////////////////////////////////////////STORIES//////////////////////////////////////////////////////
 	//search Stories title
-	$sql = "SELECT * FROM stories WHERE title LIKE '%$desc%'";
-	$result = mysqli_query($conn, $sql);
+	$sql = $conn->prepare("SELECT * FROM stories WHERE title LIKE ?");
+	$eNamLike = '%'.$desc.'%';
+	$sql->bind_param("s", $eNamLike);
+    $sql->execute();
+    $result = $sql->get_result();
 	while($row = $result->fetch_assoc())
 	{
 		$storiesID[$k] = $row['id'];
@@ -159,8 +175,11 @@
 	}
 
 	//search Stories description
-	$sql = "SELECT * FROM stories WHERE description LIKE '%$desc%'";
-	$result = mysqli_query($conn, $sql);
+	$sql = $conn->prepare("SELECT * FROM stories WHERE description LIKE ?");
+	$eNamLike = '%'.$desc.'%';
+	$sql->bind_param("s", $eNamLike);
+    $sql->execute();
+    $result = $sql->get_result();
 	while($row = $result->fetch_assoc())
 	{
 		$tempID = $row['id'];
@@ -180,8 +199,11 @@
 	}
 
 	//search Stories story
-	$sql = "SELECT * FROM stories WHERE story LIKE '%$desc%'";
-	$result = mysqli_query($conn, $sql);
+	$sql = $conn->prepare("SELECT * FROM stories WHERE story LIKE ?");
+	$eNamLike = '%'.$desc.'%';
+	$sql->bind_param("s", $eNamLike);
+    $sql->execute();
+    $result = $sql->get_result();
 	while($row = $result->fetch_assoc())
 	{
 		$tempID = $row['id'];
@@ -239,8 +261,10 @@
 							if(isset($_SESSION['sessionId']))
 							{
 								$uid=$_SESSION['userId'];
-								$sql = "SELECT admin FROM members WHERE id='$uid'";
-								$result = mysqli_query($conn, $sql);
+								$sql = $conn->prepare("SELECT admin FROM members WHERE id=?");
+								$sql->bind_param("i", $uid);
+						        $sql->execute();
+						        $result = $sql->get_result();
 								$admin = false;
 								while($row = $result->fetch_assoc())
 								{
@@ -317,8 +341,10 @@
 							if(isset($_SESSION['sessionId']))
 							{
 								$uid=$_SESSION['userId'];
-								$sql = "SELECT admin FROM members WHERE id='$uid'";
-								$result = mysqli_query($conn, $sql);
+								$sql = $conn->prepare("SELECT admin FROM members WHERE id=?");
+								$sql->bind_param("i", $uid);
+						        $sql->execute();
+						        $result = $sql->get_result();
 								$admin = false;
 								while($row = $result->fetch_assoc())
 								{
@@ -385,8 +411,10 @@
 					for($i = 0; $i < count($storiesID); $i++)
 					{
 
-						$sql = "SELECT * FROM members WHERE id = '" . $storiesUserId[$i] . "'"; //finding the user
-						$test2 = $conn->query($sql);
+						$sql = $conn->prepare("SELECT * FROM members WHERE id = ?"); //finding the user
+						$sql->bind_param("i", $storiesUserId[$i]);
+				        $sql->execute();
+				        $test2 = $sql->get_result();
 						while($row2 = $test2->fetch_assoc())
 						{
 							$user = $row2['username'];
@@ -425,8 +453,10 @@
 					}
 					for($i = 0; $i < count($eventID); $i++)
 					{
-						$sql = "SELECT * FROM members WHERE id = '" . $eventUser[$i] . "'"; //finding the user
-						$test2 = $conn->query($sql);
+						$sql = $conn->prepare("SELECT * FROM members WHERE id = ?"); //finding the user
+						$sql->bind_param("i", $eventUser[$i]);
+				        $sql->execute();
+				        $test2 = $sql->get_result();
 						while($row2 = $test2->fetch_assoc())
 						{
 							$userImage = $row2['image'];
@@ -457,8 +487,10 @@
 
 					for($i = 0; $i < count($newsID); $i++)
 					{
-						$sql = "SELECT * FROM members WHERE id = '" . $newsID[$i] . "'"; //finding the user
-						$test2 = $conn->query($sql);
+						$sql = $conn->prepare("SELECT * FROM members WHERE id = ?"); //finding the user
+						$sql->bind_param("i", $newsID[$i]);
+				        $sql->execute();
+				        $test2 = $sql->get_result();
 						while($row2 = $test2->fetch_assoc())
 						{
 							$userName = $row2['username'];

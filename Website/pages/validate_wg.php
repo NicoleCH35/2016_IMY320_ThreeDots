@@ -9,8 +9,10 @@
 	
 	include 'dbconfig.php'; //connects to db
 	
-	$sql = "SELECT * FROM workgrouptypes WHERE workgroup = '".$wg."'"; 
-	$test = $conn->query($sql);
+	$sql = prepare("SELECT * FROM workgrouptypes WHERE workgroup = ?"); 
+	$sql->bind_param("s", $wg);
+    $sql->execute();
+    $test = $sql->get_result();
 	while ($row = $test->fetch_assoc())
 	{
 		$wgID = $row["id"];
@@ -18,8 +20,9 @@
 	
 	if ($_POST)
 	{
-		$sql2 = "INSERT INTO eventworkgroups (wgID, eventID) VALUES ('".$wgID."', '".$postID."')";
-		$result2= $conn->query($sql2);
+		$sql2 = prepare("INSERT INTO eventworkgroups (wgID, eventID) VALUES (?,?)");
+		$sql2->bind_param("ii", $wgID, $postID);
+    	$sql2->execute();
 	}
 	
 	$conn->close();

@@ -10,8 +10,12 @@
 	
 	$result = '';
 	
-	$sql = "SELECT * FROM events WHERE startDateTime LIKE '$y-$m-$d %'";
-	$test = $conn->query($sql);
+	$sql = $conn->prepare("SELECT * FROM events WHERE startDateTime LIKE ?");
+	$sDT = $y.'-'.$m.'-'.$d.' %';
+	$sql->bind_param("s", $sDT);
+    $sql->execute();
+    $test = $sql->get_result();
+	// $test = $conn->query($sql);
 	
 	if ($test->num_rows > 0)
 	{
@@ -26,8 +30,10 @@
 			$image = $row['photo'];
 			$postedBy = $row['postedBy'];
 
-			$sql = "SELECT * FROM members WHERE id = '" . $postedBy . "'"; //finding the user
-			$test2 = $conn->query($sql);
+			$sql2 = $conn->prepare("SELECT * FROM members WHERE id = ?"); //finding the user
+			$sql2->bind_param("i", $postedBy);
+		    $sql2->execute();
+		    $test2 = $sql2->get_result();
 			while($row2 = $test2->fetch_assoc())
 			{
 				$user = $row2['username'];
@@ -46,28 +52,38 @@
 						
 						$result .= '<p>' . $desc . '</p>';
 						$result .= '<p>Workgroups involved: ';
-							$sql3 = "SELECT * FROM eventworkgroups WHERE eventID = '" . $eventID . "'";
-							$test3 = $conn->query($sql3);
+							$sql3 = $conn->prepare("SELECT * FROM eventworkgroups WHERE eventID = ?");
+							$sql3->bind_param("i", $eventID);
+						    $sql3->execute();
+						    $test3 = $sql3->get_result();
+							// $test3 = $conn->query($sql3);
 							while($row3 = $test3->fetch_assoc())
 							{
 								$wgID = $row3['wgID'];
 							
-								$sql4 = "SELECT * FROM workgrouptypes WHERE id = '" . $wgID . "'";
-								$test4 = $conn->query($sql4);
+								$sql4 = $conn->prepare("SELECT * FROM workgrouptypes WHERE id = ?");
+								$sql4->bind_param("i", $wgID);
+							    $sql4->execute();
+							    $test4 = $sql4->get_result();
+								// $test4 = $conn->query($sql4);
 								while($row4 = $test4->fetch_assoc())
 								{
 									$wgType = $row4['workgroup'];
 									
 									$result .= $wgType . ', ';
 								}	
+								$sql4->free_result();	
 							}
 						$result .= '</p>';
 					$result .= '</header>';
 				$result .= '</article>';
 			$result .= '</div>';
+			$sql3->free_result();
+			$sql2->free_result();
 			
 			echo $result;
 		}
+		$sql->free_result();
 	}
 	else
 	{

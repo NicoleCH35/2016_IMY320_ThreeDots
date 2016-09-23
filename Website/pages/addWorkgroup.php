@@ -8,8 +8,10 @@
 	$group = $_POST["groupType"];
 
 	echo $group;
-	$sql2 = "INSERT INTO workgrouptypes(workgroup) VALUES('$group')";
-	$result2 = mysqli_query($conn, $sql2);
+	$sql2 = $conn->prepare("INSERT INTO workgrouptypes(workgroup) VALUES(?)");
+	$sql->bind_param("s", $group);
+	$result=$sql->execute();
+	//$result2 = mysqli_query($conn, $sql2);
 
 
 ?>

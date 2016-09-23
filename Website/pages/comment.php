@@ -17,8 +17,10 @@
 	//~ $sql = "UPDATE stories SET numLikes = '5' WHERE id = '".$pid."' ";
 	//~ $result = mysqli_query($conn, $sql);
 	$cDate = date("Y-m-d H:i:s",time());
-	$sql = "INSERT INTO comments(storyID, comment, postedBy, datePosted) VALUES($pid,'$comment',$uid,'$cDate')";
-	$result = $conn->query($sql);
+	$sql = $conn->prepare("INSERT INTO comments(storyID, comment, postedBy, datePosted) VALUES(?,?,?,?)");
+	$sql->bind_param("isss", $pid,$comment,$uid,$cDate);
+	$result=$sql->execute();
+	// $result = $conn->query($sql);
 
 	//echo $cDate;
 	$conn->close();

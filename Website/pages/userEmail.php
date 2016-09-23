@@ -12,8 +12,10 @@
 		'Reply-To: keziakoko2@gmail.com' . "\r\n" .
 		'X-Mailer: PHP/' . phpversion();
 
-	$sql = "SELECT email FROM members WHERE id = $user";
-	$result = mysqli_query($conn, $sql);
+	$sql = $conn->prepare("SELECT email FROM members WHERE id = ?");
+	$sql->bind_param("i", $user);
+    $sql->execute();
+    $result = $sql->get_result();
 
 	while($row = $result->fetch_assoc())
 	{

@@ -15,13 +15,18 @@
 		'X-Mailer: PHP/' . phpversion();
 
 
-	$sql = "SELECT id FROM eventworkgroups WHERE wgID=$group AND eventID = $event";
-	$result = mysqli_query($conn, $sql);
+	$sql = $conn->prepare("SELECT id FROM eventworkgroups WHERE wgID=? AND eventID = ?");
+	$sql->bind_param("ii", $group, $event);
+    $sql->execute();
+    $result = $sql->get_result();
+
 
 	if(mysqli_num_rows($result) > 0)//if in the table update
 	{
-		$sql = "SELECT userID FROM workgroups WHERE typeID = $group";
-		$result = mysqli_query($conn, $sql);
+		$sql = $conn->prepare("SELECT userID FROM workgroups WHERE typeID = ?");
+		$sql->bind_param("i", $group);
+    	$sql->execute();
+    	$result = $sql->get_result();
 		$i=0;
 		while($row = $result->fetch_assoc())
 		{
@@ -31,8 +36,11 @@
 
 		for($j=0; $j<$i;$j++)
 		{
-			$sql = "SELECT email FROM members WHERE id = $userIDS[$j]";
-			$result = mysqli_query($conn, $sql);
+			$sql = $conn->prepare("SELECT email FROM members WHERE id = ?");
+			$sql->bind_param("i", $userIDS[$j]);
+	    	$sql->execute();
+	    	$result = $sql->get_result();
+			// $result = mysqli_query($conn, $sql);
 
 			while($row = $result->fetch_assoc())
 			{

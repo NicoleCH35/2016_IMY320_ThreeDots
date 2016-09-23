@@ -41,8 +41,11 @@
 							if(isset($_SESSION['sessionId']))
 							{
 								$uid=$_SESSION['userId'];
-								$sql = "SELECT admin FROM members WHERE id='$uid'";
-								$result = mysqli_query($conn, $sql);
+								$sql = $conn->prepare("SELECT admin FROM members WHERE id=?");
+								$sql->bind_param("i",$uid);
+								$sql->execute();
+								$result = $sql->get_result();
+								$num_of_rows = $result->num_rows;
 								$admin = false;
 								while($row = $result->fetch_assoc())
 								{
@@ -54,6 +57,8 @@
 
 								}
 								echo'<li><a href="logout.php">Logout</a></li>';
+														
+								$sql->free_result();
 							}
 							else
 							{

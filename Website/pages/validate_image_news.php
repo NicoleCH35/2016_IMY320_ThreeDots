@@ -18,9 +18,10 @@
 	include 'dbconfig.php'; //connects to db
 	
 	$postId = $_SESSION['postid'];
-	$sql = "UPDATE news SET image = '".$target_file."' WHERE id = '".$postId."'";
+	$sql = $conn->prepare("UPDATE news SET image = ? WHERE id = ?");
 	//echo $sql;
-	$result = $conn->query($sql);
+	$sql->bind_param("si", $target_file, $postId);
+    $sql->execute();
 	//return false;
 	
 	$conn->close();
