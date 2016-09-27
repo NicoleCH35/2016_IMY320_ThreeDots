@@ -1,8 +1,8 @@
 <?php
-	if(session_status()==PHP_SESSION_NONE)
-	{
+	//if(session_status()==PHP_SESSION_NONE)
+	//{
 		session_start();
-	}
+	//}
 	//include 'redirect.php';
 	$name = $_POST["eventName"];
 	$desc = $_POST["descEvent"];

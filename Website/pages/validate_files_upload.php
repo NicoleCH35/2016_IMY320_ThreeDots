@@ -1,8 +1,8 @@
 <?php
-	if(session_status()==PHP_SESSION_NONE)
-	{
+	//if(session_status()==PHP_SESSION_NONE)
+	//{
 		session_start();
-	}
+	//}
 	//include 'redirect.php';
 	$target_dir_saving = "../images/OfficialUploads/";
 	$target_file_saving = $target_dir_saving . basename($_FILES["file"]["name"]); //for saving

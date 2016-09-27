@@ -1,6 +1,6 @@
 # 2016_IMY320_ThreeDots
 
-![Logo](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/logo.png)
+![Logo](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/Website/images/Planning/logo.png)
 
 ##### Nicole Hampshire 14015341
 ##### Kezia Kokosioulis 14081360
@@ -30,51 +30,51 @@ Proudly South African colours as accent colours with a simple, elegant and profe
 ### Basic Layout:
 Large Screen:
 
-![Lage Screen](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/LargeScreen.jpg)
+![Lage Screen](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/Website/images/Planning/LargeScreen.jpg)
 
 Small Screen:
 
-![Small Screen](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/SmallScreen.jpg)
+![Small Screen](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/Website/images/Planning/SmallScreen.jpg)
 
 Menu:
 
-![Menu](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/Menu.jpg)
+![Menu](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/Website/images/Planning/Menu.jpg)
 
 Login:
 
-![Login](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/Login.jpg)
+![Login](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/Website/images/Planning/Login.jpg)
 
 Sign Up:
 
-![Sign Up](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/Signup.jpg)
+![Sign Up](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/Website/images/Planning/Signup.jpg)
 
 Events:
 
-![Events](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/Events.jpg)
+![Events](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/Website/images/Planning/Events.jpg)
 
 Story:
 
-![Story](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/Story.jpg)
+![Story](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/Website/images/Planning/Story.jpg)
 
 Story Layout:
 
-![Story Layout](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/StoryLayout.jpg)
+![Story Layout](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/Website/images/Planning/StoryLayout.jpg)
 
 News:
 
-![News](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/News.jpg)
+![News](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/Website/images/Planning/News.jpg)
 
 Mobile Screen:
 
-![Mobile Screen](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/MobileScreen.jpg)
+![Mobile Screen](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/Website/images/Planning/MobileScreen.jpg)
 
 Mobile Story Layout:
 
-![Mobile Story Layout](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/MobileStoryLayout.jpg)
+![Mobile Story Layout](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/Website/images/Planning/MobileStoryLayout.jpg)
 
 Calendar:
 
-![Calendar](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/images/Planning/Calendar.jpg)
+![Calendar](https://github.com/NicoleCH35/2016_IMY320_ThreeDots/blob/master/Website/images/Planning/Calendar.jpg)
 
 ### Technologies:
 Login and Sign Up system:
