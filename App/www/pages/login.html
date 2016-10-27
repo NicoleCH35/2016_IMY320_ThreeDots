@@ -1,6 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -21,49 +20,24 @@
 
 		<link rel="stylesheet" type="text/css" href="../css/boostrap.min.css" />
 		<link rel="stylesheet" href="../assets/css/main.css"/>
-		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
-		<script type="text/javascript" src="../js/main.js"></script>
-		<script src="../assets/js/jquery.min.js"></script>
-		<script src="../assets/js/skel.min.js"></script>
-		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
+
 		<!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
 		<title>South African NPO</title>
 	</head>
-
 	<body>
-		
-		<!-- Wrapper -->
 		<div id="wrapper">
 
-			<!-- Header -->
 			<header id="header">
 				<h1><a href="../index.html">Fireflies</a></h1>
-				
 				<nav class="links">
-					<ul id="topNav">
+					<ul>
 						<li><a href="about.html">About us</a></li>
 						<li><a href="events.html">Events</a></li>
 						<li><a href="stories.html">Stories</a></li>
 						<li><a href="news.html">News</a></li>
-						<script>
-							$(document).ready(function ()
-							{
-								var xhttp7 = new XMLHttpRequest();
-								xhttp7.onreadystatechange = function()
-								{
-									if (this.readyState == 4 && this.status == 200)
-									{
-										//alert(this.responseText);
-										$("#topNav").append(this.responseText);
-									}
-								};
-								xhttp7.open("POST", "http://threedots.site88.net/pages/php_Files/checkLogIn.php", true);
-								xhttp7.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-								xhttp7.send();
-							});
-						</script>
+						<li><a href="login.html">Login</a></li>
+						<li><a href="signup.html">Become a Member</a></li>
+
 					</ul>
 				</nav>
 				<nav class="main">
@@ -77,11 +51,9 @@
 
 			<!-- Menu -->
 			<section id="menu">
-
-
 				<!-- Links -->
 				<section>
-					<ul class="links" id="bottomNav">
+					<ul class="links">
 						<li>
 							<a href="about.html">
 								<h3>About us</h3>
@@ -106,84 +78,54 @@
 								<p>Find out what's happening in the world around you</p>
 							</a>
 						</li>
-						<script>
-							$(document).ready(function ()
-							{
-								var xhttp7 = new XMLHttpRequest();
-								xhttp7.onreadystatechange = function()
-								{
-									if (this.readyState == 4 && this.status == 200)
-									{
-										//alert(this.responseText);
-										$("#bottomNav").append(this.responseText);
-									}
-								};
-								xhttp7.open("POST", "http://threedots.site88.net/pages/php_Files/loggedin.php", true);
-								xhttp7.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-								xhttp7.send();
-							});
-						</script>
-
-
+						<li>
+							<a href="login.html">
+								<h3>Already a member?</h3>
+								<p>Login to view account</p>
+							</a>
+						</li>
+						<li>
+							<a href="signup.html">
+								<h3>Become a member</h3>
+								<p>Join us today in helping the people who need it most</p>
+							</a>
+						</li>
 					</ul>
 				</section>
+
 			</section>
 
-			<!-- Main -->
 			<div id="main">
+				<form method="post" action="login.html" id="loginForm">
+					<h1>Log in</h1>
+					<label for="username">Username: </label>
+					<input type="text" name="username" id="username" class="Linput2"/>
+					<br/>
 
-				<!-- Post -->
-				
+					<label for="password">Password: </label>
+					<input type="password" name="password" id="password" class="Linput2"/><br/>
+					<input type="submit" name="submit" id="loginBut" value="Log in">
+					<h4 id="errorHead" style="color: red"></h4>
+				</form>
 
+				<a href="signup.html" class="button big fit">Not a member yet - Register</a>
 			</div>
 
-			<!-- Sidebar -->
 			<section id="sidebar">
 
 				<!-- Intro -->
 				<section id="intro">
 					<a href="../index.html"><img src="../img/logo.png" alt="" width="110px" /></a>
 					<header>
-						<h1>News</h1>
+						<h1>Log In</h1>
 					</header>
 				</section>
 
 				<!-- Posts List -->
 				<section>
-					<ul class="posts" id="response">
-						
-						<script>
-							$(document).ready(function () 
-							{
-								var xhttp4 = new XMLHttpRequest();
-								xhttp4.onreadystatechange = function() 
-								{
-									document.getElementById("response").innerHTML = 1;
-									if (this.readyState == 4 && this.status == 200) 
-									{
-										document.getElementById("response").innerHTML = this.responseText;
-									}
-								};
-								document.getElementById("response").innerHTML = 2;
-								xhttp4.open("POST", "http://threedots.site88.net/pages/php_Files/get_news.php", true);
-								xhttp4.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-								xhttp4.send("");
-							});
-						</script>
-						
-						
-						
-					</ul>
+
 				</section>
 
-				<!-- About
-				<section class="blurb">
-					<h2>About</h2>
-					<p>We are a South African non-profit organisation that aims to fund raise for schools in need.</p>
-					<ul class="actions">
-						<li><a href="about.html" class="button">Learn More</a></li>
-					</ul>
-				</section> -->
 
 				<!-- Footer -->
 				<section id="footer">
@@ -198,17 +140,24 @@
 				</section>
 
 			</section>
-
 		</div>
-		
-		<!-- Scripts -->
 
-	    
-		<script type="text/javascript" src="../cordova.js"></script>
-		<script type="text/javascript" src="../js/index.js"></script>
+
+		<!-- Scripts -->
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/skel.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+		<script src="login.js"></script>
+
+
+		
+
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript">
 			app.initialize();
 		</script>
-		
 	</body>
 </html>

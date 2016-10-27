@@ -4,4 +4,6 @@ $(document).ready(function ()
 	//~ {
 		//~ navigator.app.loadUrl('http://www.twitter.com', { openExternal:true });
 	//~ });
+	
+	
 });

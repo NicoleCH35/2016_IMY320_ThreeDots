@@ -131,8 +131,7 @@
 			$result .="<form class='commentForm' id='$FID' data-id='$postID'>
 				<input type='hidden' value='$uid2' id='$UIDF'>
 				<textarea cols='5' rows='1' style='font-size: 12pt;' id='$CT'></textarea>
-				<input type='submit' value='Comment' class='pull-right postComment' data-id='$FID'>
-			</form>";
+				<input type='submit' value='Comment' class='pull-right postComment' data-id='$FID'></form>";
 		}
 		else
 		{
