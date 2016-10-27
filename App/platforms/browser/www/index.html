@@ -21,7 +21,12 @@
 
 		<link rel="stylesheet" type="text/css" href="css/boostrap.min.css" />
 		<link rel="stylesheet" href="assets/css/main.css"/>
-
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
 		<!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
 		<title>South African NPO</title>
 	</head>
@@ -36,13 +41,28 @@
 				<h1><a href="index.html">Fireflies</a></h1>
 				
 				<nav class="links">
-					<ul>
+					<ul id="topNav">
 						<li><a href="pages/about.html">About us</a></li>
 						<li><a href="pages/events.html">Events</a></li>
 						<li><a href="pages/stories.html">Stories</a></li>
 						<li><a href="pages/news.html">News</a></li>
-						<li><a href="pages/login.html">Login</a></li>
-						<li><a href="pages/signup.html">Become a Member</a></li>
+						<script>
+							$(document).ready(function ()
+							{
+								var xhttp7 = new XMLHttpRequest();
+								xhttp7.onreadystatechange = function()
+								{
+									if (this.readyState == 4 && this.status == 200)
+									{
+										//alert(this.responseText);
+										$("#topNav").append(this.responseText);
+									}
+								};
+								xhttp7.open("POST", "http://threedots.site88.net/pages/php_Files/checkLogIn2.php", true);
+								xhttp7.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+								xhttp7.send();
+							});
+						</script>
 					</ul>
 				</nav>
 				<nav class="main">
@@ -65,7 +85,7 @@
 
 				<!-- Links -->
 				<section>
-					<ul class="links">
+					<ul class="links" id="bottomNav">
 						<li>
 							<a href="pages/about.html">
 								<h3>About us</h3>
@@ -90,19 +110,23 @@
 								<p>Find out what's happening in the world around you</p>
 							</a>
 						</li>
-						<li>
-							<a href="pages/login.html">
-								<h3>Already a member?</h3>
-								<p>Login to view account</p>
-							</a>
-						</li>
-						<li>
-							<a href="pages/signup.html">
-								<h3>Become a member</h3>
-								<p>Join us today in helping the people who need it most</p>
-							</a>
-						</li>
-
+						<script>
+							$(document).ready(function ()
+							{
+								var xhttp7 = new XMLHttpRequest();
+								xhttp7.onreadystatechange = function()
+								{
+									if (this.readyState == 4 && this.status == 200)
+									{
+										//alert(this.responseText);
+										$("#bottomNav").append(this.responseText);
+									}
+								};
+								xhttp7.open("POST", "http://threedots.site88.net/pages/php_Files/loggedin2.php", true);
+								xhttp7.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+								xhttp7.send();
+							});
+						</script>
 						
 					</ul>
 				</section>
@@ -226,12 +250,7 @@
 		</div>
 		
 		<!-- Scripts -->
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/skel.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+
 	    
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>

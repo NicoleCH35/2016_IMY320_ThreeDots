@@ -60,7 +60,7 @@ $(document).ready(function ()
 	$("#signupForm").submit(function(e)
 	{
 		e.preventDefault();
-		alert("in");
+		//alert("in");
 
 
 		var done = true;
@@ -93,7 +93,7 @@ $(document).ready(function ()
 				emailM.css('border-color','red');
 				areNoErrors = false;
 			}
-
+			//alert("in "+areNoErrors);
 
 			if(conPass.val()!= pass)
 			{
@@ -101,9 +101,10 @@ $(document).ready(function ()
 				conPass.css('border-color','red');
 				areNoErrors = false;
 			}
-
+			//alert("in2 "+areNoErrors);
 			if(areNoErrors)
 			{
+				//alert("in ne");
 				var userN = $("#username").val();
 				var pass = $("#password").val();
 				var email = $("#email").val();
@@ -125,7 +126,7 @@ $(document).ready(function ()
 						{
 							$("#errorHead").html("The email you entered is already in use!");
 						}
-						else if(this.responseText=="error")
+						else if(this.responseText=="success")
 						{
 							window.location.replace("../index.html");
 						}

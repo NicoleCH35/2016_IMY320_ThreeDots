@@ -18,7 +18,7 @@
 		{
 			echo'<li><a href="admin.html"><h3>Admin</h3><p>Broadcast an Announcement</p></a></li>';
 		}
-		
+		echo'<li><a href="messages.html"><h3>Messages</h3><p>View messages</p></a></li>';
 		echo'<li><a href="logout.html"><h3>Logout</h3></a></li>';
 	}
 	else

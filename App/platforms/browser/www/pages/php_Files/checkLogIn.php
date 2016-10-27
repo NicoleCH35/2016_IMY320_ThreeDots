@@ -16,9 +16,9 @@
 		}
 		if($admin)
 		{
-			echo'<li><a href="admin.php">Admin</a></li>';
+			echo'<li><a href="admin.html">Admin</a></li>';
 		}
-
+		echo'<li><a href="messages.html">Messages</a></li>';
 		echo'<li><a href="logout.html">Logout</a></li>';
 	}
 	else
@@ -26,4 +26,4 @@
 		echo'<li><a href="login.html">Login</a></li>
 			<li><a href="signup.html">Become a Member</a></li>';
 	}
-	?>
+?>

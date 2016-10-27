@@ -13,33 +13,36 @@
 	//$pass = hash("sha256", $pass);
 
 
-	$sql = "SELECT * FROM members WHERE email='$email''";
+	$sql = "SELECT * FROM members WHERE email='$email'";
 	$result = $conn->query($sql);
 
+	//echo "before";
 	if(mysqli_num_rows($result) > 0) //the email is in database
 	{
 		echo "emailF";
 	}
 	else
 	{
+		//echo "else";
 		$sql2 = "SELECT * FROM members WHERE username='$user'";
 		$result2 = $conn->query($sql2);
 
-		if(mysqli_num_rows($result2) > 0) //the email is in database
+		if(mysqli_num_rows($result) > 0) //the email is in database
 		{
 			echo "usernameF";
 		}
 		else
 		{
 			// session_start();
-			$sql = "INSERT INTO members(username ,email, password,image) VALUES ('$user','$email','$pass','../images/profiles/unknown.png')";
+			$sql = "INSERT INTO members(username ,email, password,image) VALUES ('$user','$email','$pass','images/profiles/unknown.png')";
+			$result = $conn->query($sql);
 
 			$sql = "SELECT * FROM members WHERE email='$email'";
 			$result = $conn->query($sql);
 
 			while($row = $result->fetch_assoc())
 			{
-				$id_v = $row["ID"];
+				$id_v = $row["id"];
 			}
 
 

@@ -19,33 +19,34 @@
 		-->
 		<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
-		<link rel="stylesheet" type="text/css" href="css/boostrap.min.css" />
-		<link rel="stylesheet" href="assets/css/main.css"/>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/skel.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/boostrap.min.css" />
+		<link rel="stylesheet" href="../assets/css/main.css"/>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/skel.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+
 		<!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
 		<title>South African NPO</title>
 	</head>
 
 	<body>
-		
+
 		<!-- Wrapper -->
 		<div id="wrapper">
 
 			<!-- Header -->
 			<header id="header">
-				<h1><a href="index.html">Fireflies</a></h1>
-				
+				<h1><a href="../index.html">Fireflies</a></h1>
+
 				<nav class="links">
 					<ul id="topNav">
-						<li><a href="pages/about.html">About us</a></li>
-						<li><a href="pages/events.html">Events</a></li>
-						<li><a href="pages/stories.html">Stories</a></li>
-						<li><a href="pages/news.html">News</a></li>
+						<li><a href="about.html">About us</a></li>
+						<li><a href="events.html">Events</a></li>
+						<li><a href="stories.html">Stories</a></li>
+						<li><a href="news.html">News</a></li>
 						<script>
 							$(document).ready(function ()
 							{
@@ -58,7 +59,7 @@
 										$("#topNav").append(this.responseText);
 									}
 								};
-								xhttp7.open("POST", "http://threedots.site88.net/pages/php_Files/checkLogIn2.php", true);
+								xhttp7.open("POST", "http://threedots.site88.net/pages/php_Files/checkLogIn.php", true);
 								xhttp7.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 								xhttp7.send();
 							});
@@ -67,12 +68,6 @@
 				</nav>
 				<nav class="main">
 					<ul>
-						<li class="search">
-							<a class="fa-search" href="#search">Search</a>
-							<form id="search" method="get" action="pages/search.php">
-								<input type="text" name="query" placeholder="Search"/>
-							</form>
-						</li>
 						<li class="menu">
 							<a class="fa-bars" href="#menu">Menu</a>
 						</li>
@@ -83,29 +78,30 @@
 			<!-- Menu -->
 			<section id="menu">
 
+
 				<!-- Links -->
 				<section>
 					<ul class="links" id="bottomNav">
 						<li>
-							<a href="pages/about.html">
+							<a href="about.html">
 								<h3>About us</h3>
 								<p>Find out what we do and how you can contact us</p>
 							</a>
 						</li>
 						<li>
-							<a href="pages/events.html">
+							<a href="events.html">
 								<h3>Events</h3>
 								<p>Check out our calender to find out what events we have planned for this month</p>
 							</a>
 						</li>
 						<li>
-							<a href="pages/stories.html">
+							<a href="stories.html">
 								<h3>Stories</h3>
 								<p>See what we have done to make a difference in the lives of those who need it</p>
 							</a>
 						</li>
 						<li>
-							<a href="pages/news.html">
+							<a href="news.html">
 								<h3>News</h3>
 								<p>Find out what's happening in the world around you</p>
 							</a>
@@ -122,116 +118,55 @@
 										$("#bottomNav").append(this.responseText);
 									}
 								};
-								xhttp7.open("POST", "http://threedots.site88.net/pages/php_Files/loggedin2.php", true);
+								xhttp7.open("POST", "http://threedots.site88.net/pages/php_Files/loggedin.php", true);
 								xhttp7.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 								xhttp7.send();
 							});
 						</script>
-						
+
+
 					</ul>
 				</section>
 
-				<!-- Actions -->
-
-
-				<section>
-				
-					
-
-				</section>
 
 			</section>
 
 			<!-- Main -->
 			<div id="main">
-
-				<!-- Story -->
-				<section>
-					<div id="story_response">
-					</div>
-				</section>
-				
-				<!-- Event -->
-				<section>
-					<div id="event_response">
-					</div>
-				</section>
-				
-				<!-- News -->
-				<section>
-					<div id="news_response">
-					</div>
-				</section>
-				
 				<script>
-					$(document).ready(function () 
+					$(document).ready(function ()
 					{
-						//Get Stories
-						//~ var xhttp = new XMLHttpRequest();
-						//~ xhttp.onreadystatechange = function() 
-						//~ {
-							//~ document.getElementById("story_response").innerHTML = 1;
-							//~ if (this.readyState == 4 && this.status == 200) 
-							//~ {
-								//~ document.getElementById("story_response").innerHTML = this.responseText;
-							//~ }
-						//~ };
-						//~ xhttp.open("POST", "http://threedots.site88.net/pages/php_Files/get_stories.php", true);
-						//~ xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-						//~ xhttp.send();
-						
-						//~ //Get Events
-						//~ var xhttp2 = new XMLHttpRequest();
-						//~ xhttp2.onreadystatechange = function() 
-						//~ {
-							//~ document.getElementById("event_response").innerHTML = 1;
-							//~ if (this.readyState == 4 && this.status == 200) 
-							//~ {
-								//~ document.getElementById("event_response").innerHTML = this.responseText;
-							//~ }
-						//~ };
-						//~ xhttp2.open("POST", "http://threedots.site88.net/pages/php_Files/get_events_index.php", true);
-						//~ xhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-						//~ xhttp2.send();
-						
-						//~ //Get News
-						//~ var xhttp3 = new XMLHttpRequest();
-						//~ xhttp3.onreadystatechange = function() 
-						//~ {
-							//~ document.getElementById("news_response").innerHTML = 1;
-							//~ if (this.readyState == 4 && this.status == 200) 
-							//~ {
-								//~ document.getElementById("news_response").innerHTML = this.responseText;
-							//~ }
-						//~ };
-						//~ xhttp3.open("POST", "http://threedots.site88.net/pages/php_Files/get_news.php", true);
-						//~ xhttp3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-						//~ xhttp3.send("");
+						var xhttp7 = new XMLHttpRequest();
+						xhttp7.onreadystatechange = function()
+						{
+							if (this.readyState == 4 && this.status == 200)
+							{
+								//alert(this.responseText);
+								$("#main").append(this.responseText);
+							}
+						};
+						xhttp7.open("POST", "http://threedots.site88.net/pages/php_Files/displayMessage.php", true);
+						xhttp7.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+						xhttp7.send();
 					});
 				</script>
-				
 			</div>
 
-			<!-- Sidebar -->
 			<section id="sidebar">
 
 				<!-- Intro -->
 				<section id="intro">
-					<a href="index.html"><img src="img/logo.png" alt="" width="110px" /></a>
+					<a href="../index.html"><img src="../img/logo.png" alt="" width="110px" /></a>
 					<header>
-						<h1>Fireflies</h1>
-						<h3>South African NPO</h3>
+						<h1>Messages</h1>
 					</header>
 				</section>
 
-				<!-- About -->
-				<section class="blurb">
-					<h2>About</h2>
-					<p>We are a South African non-profit organisation that aims to fund raise for schools in need.</p>
-					<ul class="actions">
-						<li><a href="pages/about.html" class="button">Learn More</a></li>
-					</ul>
+				<!-- Posts List -->
+				<section>
+
 				</section>
+
 
 				<!-- Footer -->
 				<section id="footer">
@@ -239,7 +174,7 @@
 						<li><a href="#" onclick="window.open('http://twitter.com', '_system');" class="fa-twitter" id="twitter"><span class="label">Twitter</span></a></li>
 						<li><a href="#" onclick="window.open('http://facebook.com', '_system');" class="fa-facebook" id="facebook"><span class="label">Facebook</span></a></li>
 						<li><a href="#" onclick="window.open('http://instagram.com', '_system');" class="fa-instagram" id="instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="pages/about.html" class="fa-envelope"><span class="label">Contact Us</span></a></li>
+						<li><a href="about.html" class="fa-envelope"><span class="label">Contact Us</span></a></li>
 					</ul>
 					<p class="copyright">&copy; ThreeDots. This is a demo site. No information on this site should be taken seriously. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a
 							href="http://unsplash.com">Unsplash</a>.</p>
@@ -248,15 +183,14 @@
 			</section>
 
 		</div>
-		
+
 		<!-- Scripts -->
 
-	    
-		<script type="text/javascript" src="cordova.js"></script>
-		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="../cordova.js"></script>
+		<script type="text/javascript" src="../js/index.js"></script>
 		<script type="text/javascript">
 			app.initialize();
 		</script>
-		
+
 	</body>
 </html>
