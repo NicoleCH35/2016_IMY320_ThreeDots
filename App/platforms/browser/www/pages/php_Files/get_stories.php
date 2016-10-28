@@ -64,84 +64,30 @@
 
 		$result .= '<footer>';
 		$result .= '<ul class="stats">';
-		$result .= '<li><a href="#" class="icon fa-heart likes" data-id="'.$postID.'">' . $numLikes . '</a></li>';
-		$result .= '<li><a href="#" class="icon fa-comment comments" data-id="'.$divName.'">'.$numComments.'</a></li>';
+		$result .= '<li class="icon fa-heart likes">' . $numLikes . '</li>';
+		$result .= '<li class="icon fa-comment comments">'.$numComments.'</li>';
 		$result .= '</ul>';
 		$result .= '</footer>';
 		$result .= "<div class='commentsDiv' id='$divName'>";
-		$admin = false;
-		if(isset($_SESSION['sessionId']))
-		{
-			$uid=$_SESSION['userId'];
-			$sql = "SELECT admin FROM members WHERE id='$uid'";
-			$result = mysqli_query($conn, $sql);
-
-			while($row = $result->fetch_assoc())
-			{
-				$admin = $row["admin"];
-			}
-		}
 
 		for($a=0;$a<$c;$a++)
 		{
-			if($admin)
+			if($commentsUser[$a]==0)//unknown user
 			{
-				if($commentsUser[$a]==0)//unknown user
-				{
-
-					$result .="<h6 style='font-size: 8pt;' data-id='$commentsID[$a]'>$comments[$a] - Unknown $commentsDate[$a] <a class='icon fa-remove deleteComment' data-id='$commentsID[$a]'></a></h6>";
-				}
-				else
-				{
-					$sql = "SELECT username FROM members WHERE id = '" .$commentsUser[$a]. "'"; //finding the comments
-					$test3 = $conn->query($sql);
-					while($row3 = $test3->fetch_assoc())
-					{
-						$commentedUser = $row3['username'];
-						$result .="<h6 style='font-size: 8pt;' data-id='$commentsID[$a]'>$comments[$a] - $commentedUser $commentsDate[$a]<a class='icon fa-remove deleteComment' data-id='$commentsID[$a]'></a></h6>";
-					}
-				}
+				$result .="<h6 style='font-size: 8pt;' data-id='$commentsID[$a]'>$comments[$a] - Unknown $commentsDate[$a]</h6>";
 			}
 			else
 			{
-				if($commentsUser[$a]==0)//unknown user
+				$sql = "SELECT username FROM members WHERE id = '" .$commentsUser[$a]. "'"; //finding the comments
+				$test3 = $conn->query($sql);
+				while($row3 = $test3->fetch_assoc())
 				{
-
-					$result .="<h6 style='font-size: 8pt;' data-id='$commentsID[$a]'>$comments[$a] - Unknown $commentsDate[$a]</h6>";
-				}
-				else
-				{
-					$sql = "SELECT username FROM members WHERE id = '" .$commentsUser[$a]. "'"; //finding the comments
-					$test3 = $conn->query($sql);
-					while($row3 = $test3->fetch_assoc())
-					{
-						$commentedUser = $row3['username'];
-						$result .="<h6 style='font-size: 8pt;' data-id='$commentsID[$a]'>$comments[$a] - $commentedUser $commentsDate[$a]</h6>";
-					}
+					$commentedUser = $row3['username'];
+					$result .="<h6 style='font-size: 8pt;' data-id='$commentsID[$a]'>$comments[$a] - $commentedUser $commentsDate[$a]</h6>";
 				}
 			}
 
 		}
-		$FID = $postID."commentForm";
-		$UIDF = $postID."userID";
-		$CT = $postID."commentText";
-		if(isset($_SESSION['sessionId']))
-		{
-			$uid2=$_SESSION['userId'];
-			$result .="<form class='commentForm' id='$FID' data-id='$postID'>
-				<input type='hidden' value='$uid2' id='$UIDF'>
-				<textarea cols='5' rows='1' style='font-size: 12pt;' id='$CT'></textarea>
-				<input type='submit' value='Comment' class='pull-right postComment' data-id='$FID'></form>";
-		}
-		else
-		{
-			$result .="<form class='commentForm' id='$FID' data-id='$postID'>
-				<input type='hidden' value='0' id='$UIDF'>
-				<textarea cols='5' rows='1' style='font-size: 12pt;' id='$CT'></textarea>
-				<input type='submit' value='Comment' class='pull-right postComment' data-id='$FID'>
-			</form>";
-		}
-
 		$result .= "</div>";
 		$result .= '</article>';
 	}
